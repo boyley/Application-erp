@@ -1,6 +1,7 @@
 package com.github.application.erp.respository;
 
 import com.alibaba.fastjson.JSON;
+import com.github.application.SampleApplication;
 import com.github.application.erp.entity.Product;
 import com.github.application.erp.repository.ProductRepository;
 import org.junit.Test;
@@ -17,9 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Created by 赵波 on 2015/10/26.
  */
-//@SpringApplicationConfiguration(classes = SampleApplication.class)
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@Transactional
+@SpringApplicationConfiguration(classes = SampleApplication.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
 public class ProductRepositoryABC {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductRepositoryABC.class);
@@ -27,7 +28,7 @@ public class ProductRepositoryABC {
     @Autowired
     private ProductRepository productRepository;
 
-//    @Test
+    @Test
     public void testFindPage() {
         Product product = new Product();
 //        product.setProducer("producer-2");

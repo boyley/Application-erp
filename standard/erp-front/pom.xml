@@ -11,7 +11,11 @@
     <name>erp-front Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
-
+        <dependency>
+            <groupId>com.github.application</groupId>
+            <artifactId>erp</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>erp-front</finalName>

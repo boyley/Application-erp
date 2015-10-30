@@ -41,16 +41,16 @@ import java.util.List;
 @ConditionalOnProperty(prefix = "spring.mybatis", name = "enabled", havingValue = "true", matchIfMissing = true)
 public class InfrastructureConfig {
 
-//    @Bean(initMethod = "init", destroyMethod = "close")
-//    @Primary
-//    @ConfigurationProperties(prefix = "spring.dataSource")
-//    public DataSource dataSource() {
-//        DruidDataSource dataSource = new DruidDataSource();
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/erp");
-//        dataSource.setUsername("root");
-//        dataSource.setPassword("root");
-//        return dataSource;
-//    }
+    @Bean(initMethod = "init", destroyMethod = "close")
+    @Primary
+    @ConfigurationProperties(prefix = "spring.dataSource")
+    public DataSource dataSource() {
+        DruidDataSource dataSource = new DruidDataSource();
+        dataSource.setUrl("jdbc:mysql://localhost:3306/erp");
+        dataSource.setUsername("root");
+        dataSource.setPassword("root");
+        return dataSource;
+    }
 
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer(@Value("${spring.mybatis.mapper:*}") String basePackage) {
@@ -63,11 +63,11 @@ public class InfrastructureConfig {
 
     @Bean
     @Autowired
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource, ResourceLoader resourceLoader, @Value("${spring.mybatis.aliases:}") String aliases) throws Exception {
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource, ResourceLoader resourceLoader, @Value("${spring.mybatis.aliases:*}") String aliases) throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setTypeAliasesPackage(aliases);
-        sessionFactory.setMapperLocations(getResources(resourceLoader, "classpath*:mapper/**/*.xml"));
+        sessionFactory.setMapperLocations(getResources(resourceLoader, "classpath*:**/*Mapper.xml"));
 
         List<Interceptor> interceptors = new ArrayList<Interceptor>();
         interceptors.add(new PageInterceptor());

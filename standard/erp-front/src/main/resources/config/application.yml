@@ -1,4 +1,3 @@
----
 spring:
     datasource:
         url: jdbc:mysql://localhost:3306/erp
@@ -19,8 +18,8 @@ spring:
         logAbandoned: true
         filters: stat
     mybatis:
-        aliases: com.bogle.erp.entity
-        mapper: com.bogle.erp.repository
+        aliases: com.github.application.erp.entity
+        mapper: com.github.application.erp.repository
 ---
 logging:
     file: /logs/erp.log

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.application.erp.repository.ProductRepository">
+    <resultMap id="BaseResultMap" type="com.github.application.erp.entity.Product">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="producer" property="producer" jdbcType="VARCHAR"/>
+        <result column="contact" property="contact" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="typ" property="typ" jdbcType="VARCHAR"/>
+        <result column="colour_temperature" property="colourTemperature" jdbcType="VARCHAR"/>
+        <result column="bri" property="bri" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="DOUBLE"/>
+        <result column="note" property="note" jdbcType="LONGVARCHAR"/>
+        <result column="remove" property="remove" jdbcType="BIT"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, producer, contact, phone,email, create_time, update_time, typ, colour_temperature,
+    bri, price,note,remove
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from product
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="find" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product
+        <where>
+            <if test="producer != null">
+                and producer like '%${producer}%'
+            </if>
+            <if test="contact != null">
+                and contact like '%${contact}%'
+            </if>
+            <if test="typ != null">
+                and typ like '%${typ}%'
+            </if>
+            <if test="remove != null">
+                and remove = ${remove}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from product
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+    <insert id="insert" parameterType="com.github.application.erp.entity.Product" useGeneratedKeys="true" keyProperty="id">
+        insert into product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="producer != null">
+                producer,
+            </if>
+            <if test="contact != null">
+                contact,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="typ != null">
+                typ,
+            </if>
+            <if test="colourTemperature != null">
+                colour_temperature,
+            </if>
+            <if test="bri != null">
+                bri,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="note != null">
+                note,
+            </if>
+            <if test="remove != null">
+                remove,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="producer != null">
+                #{producer,jdbcType=VARCHAR},
+            </if>
+            <if test="contact != null">
+                #{contact,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="typ != null">
+                #{typ,jdbcType=VARCHAR},
+            </if>
+            <if test="colourTemperature != null">
+                #{colourTemperature,jdbcType=VARCHAR},
+            </if>
+            <if test="bri != null">
+                #{bri,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DOUBLE},
+            </if>
+            <if test="note != null">
+                #{note,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="remove != null">
+                #{remove,jdbcType=BIT },
+            </if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="com.github.application.erp.entity.Product" useGeneratedKeys="true" keyProperty="id">
+        update product
+        <set>
+            <if test="producer != null">
+                producer=#{producer,jdbcType=VARCHAR},
+            </if>
+            <if test="contact != null">
+                contact=#{contact,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone=#{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email=#{email,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                createTime=#{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                updateTime=#{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="typ != null">
+                typ=#{typ,jdbcType=VARCHAR},
+            </if>
+            <if test="colourTemperature != null">
+                colour_temperature=#{colourTemperature,jdbcType=VARCHAR},
+            </if>
+            <if test="bri != null">
+                bri=#{bri,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price=#{price,jdbcType=DOUBLE},
+            </if>
+            <if test="note != null">
+                note=#{note,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="remove != null">
+                remove=#{remove,jdbcType=BIT },
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKeysSelective" parameterType="list">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update product
+            <set>
+                <if test="item.producer != null">
+                    producer = ${item.producer},
+                </if>
+                <if test="item.contact != null">
+                    contact = ${item.contact},
+                </if>
+                <if test="item.phone != null">
+                    phone = ${item.phone},
+                </if>
+                <if test="item.email != null">
+                    email = ${item.phone},
+                </if>
+                <if test="item.createTime != null">
+                    create_time = ${item.createTime},
+                </if>
+                <if test="item.updateTime != null">
+                    update_time = ${item.updateTime},
+                </if>
+                <if test="item.typ != null">
+                    typ = ${item.typ},
+                </if>
+                <if test="item.colourTemperature != null">
+                    colour_temperature = ${item.colourTemperature},
+                </if>
+                <if test="item.bri != null">
+                    bri = ${item.bri},
+                </if>
+                <if test="item.price != null">
+                    price = ${item.price},
+                </if>
+                <if test="item.note != null">
+                    note = ${item.note},
+                </if>
+                <if test="item.remove != null">
+                    remove = ${item.remove},
+                </if>
+            </set>
+            where id = ${item.id}
+        </foreach>
+    </update>
+</mapper>
