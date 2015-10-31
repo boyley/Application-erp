@@ -1,0 +1,200 @@
+<title>Blank Page - Ace Admin</title>
+<!-- ajax layout which only needs content area -->
+<div class="page-header">
+    <button class="btn btn-info btn-xs tooltip-info" data-rel="tooltip" title="新增" >
+        <i class="ace-icon fa fa-plus  bigger-110 icon-only"></i>
+        新增
+    </button>
+</div>
+<!-- /.page-header -->
+
+<!-- ajax layout which only needs content area -->
+<div class="row">
+
+    <div class="col-xs-12">
+        <!-- PAGE CONTENT BEGINS -->
+        <!-- led table begins -->
+
+        <div class="table-header">
+            LED 产品管理
+        </div>
+        <table id="dynamic-table" class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>
+                    <i class="ace-icon fa fa-glass bigger-110 hidden-480"></i>
+                    生产商
+                </th>
+                <th>
+                    <i class="ace-icon fa fa-users bigger-110 hidden-480"></i>
+                    联系人
+                </th>
+                <th>
+                    <i class="ace-icon fa fa-phone bigger-110 hidden-480"></i>
+                    联系电话
+                </th>
+                <th>
+                    <i class="ace-icon fa fa-envelope-o bigger-110 hidden-480"></i>
+                    Email
+                </th>
+                <th>
+                    <i class="ace-icon fa fa-flag bigger-110 hidden-480"></i>
+                    型号
+                </th>
+                <th>
+                    <i class="ace-icon fa fa-flash bigger-110 hidden-480"></i>
+                    色温
+                </th>
+                <th>
+                    <i class="ace-icon fa fa-fire bigger-110 hidden-480"></i>
+                    亮度
+                </th>
+                <th>
+                    <i class="ace-icon fa fa-money bigger-110 hidden-480"></i>
+                    价格
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <a href="#">once.com</a>
+                </td>
+                <td>$20</td>
+                <td>$20</td>
+                <td>$20</td>
+                <td>1,400</td>
+                <td>Apr 04</td>
+                <td>Apr 04</td>
+                <td>
+                    <span class="badge badge-danger">Sold</span>
+                </td>
+                <td>
+                    <div class="hidden-sm hidden-xs action-buttons">
+                        <a class="blue tooltip-info" data-rel="tooltip" title="查看" href="#">
+                            <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                        </a>
+
+                        <a class="green tooltip-success bootbox-confirm-edit" data-rel="tooltip" title="修改" href="#">
+                            <i class="ace-icon fa fa-pencil bigger-130"></i>
+                        </a>
+
+                        <a class="red tooltip-error bootbox-confirm-delete" data-rel="tooltip" title="删除" href="#">
+                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                        </a>
+                    </div>
+
+                    <div class="hidden-md hidden-lg">
+                        <div class="inline pos-rel">
+                            <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown"
+                                    data-position="auto">
+                                <i class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                <li>
+                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="查看">
+                                        <span class="blue">
+                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="修改">
+                                        <span class="green">
+                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                        </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="删除">
+                                            <span class="red">
+                                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                            </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+        <!-- led table ends -->
+        <!-- PAGE CONTENT ENDS -->
+    </div>
+    <!-- /.col -->
+</div><!-- /.row -->
+
+<!-- page specific plugin scripts -->
+<script type="text/javascript">
+    var scripts = [
+        null,
+        "../../assets/js/dataTables/jquery.dataTables.js",
+        "../../assets/js/dataTables/jquery.dataTables.bootstrap.js",
+        "../../assets/js/dataTables/extensions/TableTools/js/dataTables.tableTools.js",
+        "../../assets/js/dataTables/extensions/ColVis/js/dataTables.colVis.js",
+        "../../assets/js/jquery-ui.custom.js",
+        "../../assets/js/jquery.ui.touch-punch.js",
+        "../../assets/js/bootbox.js",
+        "../../assets/js/jquery.easypiechart.js",
+        "../../assets/js/jquery.gritter.js",
+        "../../assets/js/spin.js",
+        null]
+    $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
+        //inline scripts related to this page
+        $(function ($) {
+
+            $('[data-rel=tooltip]').tooltip();
+
+            $(".bootbox-confirm-edit").on(ace.click_event, function () {
+                bootbox.confirm("<h1>确定修改吗?</h1>", function (result) {
+                    if (result) {
+                        //
+                    }
+                });
+            });
+
+            $(".bootbox-confirm-delete").on(ace.click_event, function () {
+                bootbox.confirm("<h1>确定删除吗?</h1>", function (result) {
+                    if (result) {
+                        //
+                    }
+                });
+            });
+
+            $('#dynamic-table').dataTable({
+                language: {
+                    "sProcessing": "处理中...",
+                    "sLengthMenu": "每页显示 _MENU_ 条结果",
+                    "sZeroRecords": "没有匹配结果",
+                    "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                    "sInfoPostFix": "",
+                    "sSearch": "搜索:",
+                    "sUrl": "",
+                    "sEmptyTable": "表中数据为空",
+                    "sLoadingRecords": "载入中...",
+                    "sInfoThousands": ",",
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "上一页",
+                        "sNext": "下一页",
+                        "sLast": "末页"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": 以升序排列此列",
+                        "sSortDescending": ": 以降序排列此列"
+                    }
+                },
+                "dom": '<"top">rt<"bottom"ip><"clear">'
+            });
+        });
+    });
+</script>

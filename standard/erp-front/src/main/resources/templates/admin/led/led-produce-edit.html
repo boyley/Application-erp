@@ -1,0 +1,269 @@
+<title>LED-产品编辑</title>
+
+
+<link rel="stylesheet" href="/assets/css/jquery-ui.custom.css"/>
+<link rel="stylesheet" href="/assets/css/chosen.css"/>
+<link rel="stylesheet" href="/assets/css/datepicker.css"/>
+<link rel="stylesheet" href="/assets/css/bootstrap-timepicker.css"/>
+<link rel="stylesheet" href="/assets/css/daterangepicker.css"/>
+<link rel="stylesheet" href="/assets/css/bootstrap-datetimepicker.css"/>
+<link rel="stylesheet" href="/assets/css/colorpicker.css"/>
+
+<!-- ajax layout which only needs content area -->
+<div class="page-header" xmlns:th="http://www.thymeleaf.org">
+    <h1>
+        LED
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            <span th:text="${product != null ? '修改' : '新增'}"></span>
+        </small>
+    </h1>
+</div><!-- /.page-header -->
+
+<!-- ajax layout which only needs content area -->
+<div class="row" xmlns:th="http://www.thymeleaf.org">
+    <div class="col-xs-12">
+        <!-- PAGE CONTENT BEGINS -->
+        <form class="form-horizontal" role="form" action="/led/save" method="post">
+            <input type="hidden" th:if="${product != null}"  th:value="${product != null ? product.id : ''}" name="id"/>
+            <!-- 生产商 begins -->
+            <div class="form-group">
+                <label for="form-field-1" class="col-xs-12 col-sm-3 control-label no-padding-right">生产商<b
+                        class="text-danger">&nbsp;*</b></label>
+
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text"
+                               required="required"
+                               pattern=".{2,50}"
+                               maxlength="50"
+                               id="form-field-1"
+                               placeholder="请输入生产商"
+                               name="producer"
+                               title="生产商字符的长度在2~50之间"
+                               class="width-100"
+                                th:value="${product != null ? product.producer : ''}"
+                                />
+                        <i class="ace-icon fa fa-times-circle hide"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    生产商字符的长度在2~50之间
+                </div>
+            </div>
+            <!-- 生产商 ends -->
+
+            <!-- 联系人 begins -->
+            <div class="form-group">
+                <label for="form-field-2" class="col-xs-12 col-sm-3 control-label no-padding-right">联系人<b
+                        class="text-danger">&nbsp;*</b></label>
+
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text"
+                               required="required"
+                               pattern=".{2,30}"
+                               maxlength="30"
+                               id="form-field-2"
+                               placeholder="请输入联系人"
+                               name="contact"
+                               title="联系人字符长度在2~30之间"
+                               class="width-100"
+                               th:value="${product != null ? product.contact : ''}"
+                                />
+                        <i class="ace-icon fa fa-times-circle hide"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    联系人字符的长度在2~50之间
+                </div>
+            </div>
+            <!-- 联系人 ends -->
+
+            <!-- 联系电话 begins -->
+            <div class="form-group">
+                <label for="form-field-3" class="col-xs-12 col-sm-3 control-label no-padding-right">联系电话</label>
+
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text"
+                               maxlength="50"
+                               id="form-field-3"
+                               placeholder="请输入联系电话"
+                               title="请输入联系电话"
+                               name="phone"
+                               class="width-100"
+                               th:value="${product != null ? product.phone : ''}"
+                                />
+                        <i class="ace-icon fa fa-times-circle hide"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    请输入联系电话
+                </div>
+            </div>
+            <!-- 联系电话 ends -->
+
+            <!-- 联系Email begins -->
+            <div class="form-group">
+                <label for="form-field-4" class="col-xs-12 col-sm-3 control-label no-padding-right">Email</label>
+
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="email"
+                               maxlength="50"
+                               id="form-field-4"
+                               placeholder="请输入负责人Email"
+                               title="Email格式必须包含@符号"
+                               name="email"
+                               class="width-100"
+                               th:value="${product != null ? product.email : ''}"
+                                />
+                        <i class="ace-icon fa fa-times-circle hide"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Email格式必须包含@符号
+                </div>
+            </div>
+            <!-- 联系Email ends -->
+
+            <!-- 型号 begins -->
+            <div class="form-group">
+                <label for="form-field-5" class="col-xs-12 col-sm-3 control-label no-padding-right">型号<b
+                        class="text-danger">&nbsp;*</b></label>
+
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text"
+                               required="required"
+                               pattern=".{2,30}"
+                               maxlength="30"
+                               id="form-field-5"
+                               placeholder="请输入型号"
+                               name="typ"
+                               title="LED型号字符的长度在2~30之间"
+                               class="width-100"
+                               th:value="${product != null ? product.typ : ''}"
+                                />
+                        <i class="ace-icon fa fa-times-circle hide"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    LED型号字符的长度在2~30之间
+                </div>
+            </div>
+            <!-- 型号 ends -->
+
+            <!-- 色温 begins -->
+            <div class="form-group">
+                <label for="form-field-6" class="col-xs-12 col-sm-3 control-label no-padding-right">色温<b
+                        class="text-danger">&nbsp;*</b></label>
+
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text"
+                               required="required"
+                               pattern=".{2,30}"
+                               maxlength="30"
+                               id="form-field-6"
+                               placeholder="请输入LED色温"
+                               name="colourTemperature"
+                               title="LED色温字符的长度在2~30之间"
+                               class="width-100"
+                               th:value="${product != null ? product.colourTemperature : ''}"
+                                />
+                        <i class="ace-icon fa fa-times-circle hide"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    LED色温字符的长度在2~30之间
+                </div>
+            </div>
+            <!-- 色温 ends -->
+
+            <!-- 亮度 begins -->
+            <div class="form-group">
+                <label for="form-field-7" class="col-xs-12 col-sm-3 control-label no-padding-right">亮度<b
+                        class="text-danger">&nbsp;*</b></label>
+
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text"
+                               required="required"
+                               pattern=".{2,30}"
+                               maxlength="30"
+                               id="form-field-7"
+                               placeholder="请输入亮度"
+                               name="bri"
+                               title="LED亮度字符的长度在2~30之间"
+                               class="width-100"
+                               th:value="${product != null ? product.bri : ''}"
+                                />
+                        <i class="ace-icon fa fa-times-circle hide"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    LED亮度字符的长度在2~30之间
+                </div>
+            </div>
+            <!-- 亮度 ends -->
+
+            <!-- 价格 begins -->
+            <div class="form-group">
+                <label for="form-field-8" class="col-xs-12 col-sm-3 control-label no-padding-right">价格(单位:元)<b
+                        class="text-danger">&nbsp;*</b></label>
+
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number"
+                               required="required"
+                               pattern="[0-9]+([.]{1}[0-9]+){0,1}"
+                               step="any"
+                               id="form-field-8"
+                               placeholder="请输入价格(单位:元)"
+                               name="price"
+                               title="价格格式为整数或小数"
+                               class="width-100"
+                               th:value="${product != null ? product.price : ''}"
+                                />
+                        <i class="ace-icon fa fa-times-circle hide"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    价格格式为整数或小数
+                </div>
+            </div>
+            <!-- 价格 ends -->
+
+            <!-- 提交，重置按钮 begins-->
+            <div class="clearfix form-actions">
+                <div class="col-md-offset-3 col-md-9">
+                    <button class="btn btn-info" type="submit">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        保存
+                    </button>
+
+                    &nbsp; &nbsp; &nbsp;
+                    <button class="btn" type="reset">
+                        <i class="ace-icon fa fa-undo bigger-110"></i>
+                        重置
+                    </button>
+                    &nbsp; &nbsp; &nbsp;
+                    <a class="btn btn-primary" data-url="page/admin/led/led-produce-list.html"
+                       href="#page/admin/led/led-produce-list.html">
+                        <i class="ace-icon fa fa-reply bigger-110"></i>
+                        返回LED列表页面
+                    </a>
+                </div>
+            </div>
+            <div class="hr hr-24"></div>
+            <!-- 提交，重置按钮 ends-->
+
+        </form>
+        <!-- PAGE CONTENT ENDS -->
+    </div>
+    <!-- /.col -->
+</div><!-- /.row -->
+<!-- page specific plugin scripts -->
+<script type="text/javascript" src="/js/led/led-produce-edit.js"></script>

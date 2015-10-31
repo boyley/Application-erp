@@ -1,0 +1,284 @@
+
+<link rel="stylesheet" href="../../assets/css/jquery-ui.custom.css"/>
+<link rel="stylesheet" href="../../assets/css/chosen.css"/>
+<link rel="stylesheet" href="../../assets/css/datepicker.css"/>
+<link rel="stylesheet" href="../../assets/css/bootstrap-timepicker.css"/>
+<link rel="stylesheet" href="../../assets/css/daterangepicker.css"/>
+<link rel="stylesheet" href="../../assets/css/bootstrap-datetimepicker.css"/>
+<link rel="stylesheet" href="../../assets/css/colorpicker.css"/>
+
+<title>订单管理</title>
+
+<!-- ajax layout which only needs content area -->
+<div class="page-header">
+    <h1>
+        LED
+        <small>
+            <i class="ace-icon fa fa-angle-double-right"></i>
+            订单
+        </small>
+    </h1>
+</div><!-- /.page-header -->
+
+<!-- ajax layout which only needs content area -->
+<div class="row">
+    <div class="col-xs-12">
+        <!-- PAGE CONTENT BEGINS -->
+        <form class="form-horizontal" role="form" action="#">
+
+            <!-- 单据号 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-11" class="col-xs-12 col-sm-3 control-label no-padding-right">单据号</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="form-field-11" placeholder="单据号" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 单据号 ends -->
+
+            <!-- 客户名称 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-1" class="col-xs-12 col-sm-3 control-label no-padding-right">客户名称</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="form-field-1" placeholder="客户名称" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 客户名称 ends -->
+
+            <!-- 联系电话 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-2" class="col-xs-12 col-sm-3 control-label no-padding-right">联系电话</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="form-field-2" placeholder="联系电话" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 联系电话 ends -->
+
+            <!-- Email begins -->
+            <div class="form-group has-success">
+                <label for="form-field-3" class="col-xs-12 col-sm-3 control-label no-padding-right">Email</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="form-field-3" placeholder="Email" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- Email ends -->
+
+            <!-- 日期 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-4" class="col-xs-12 col-sm-3 control-label no-padding-right">日期</label>
+                <div class="col-xs-12 col-sm-5">
+                    <div class="input-group">
+                        <input class="form-control date-picker" id="form-field-4" type="text" placeholder="日期" data-date-format="yyyy-mm-dd" />
+                        <span class="input-group-addon">
+                            <!--<i class="ace-icon fa fa-check-circle"></i>-->
+                            <i class="fa fa-calendar bigger-110"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 日期 ends -->
+
+            <!-- 型号 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-5" class="col-xs-12 col-sm-3 control-label no-padding-right">型号</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="form-field-5" placeholder="型号" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 型号 ends -->
+
+            <!-- 色温 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-6" class="col-xs-12 col-sm-3 control-label no-padding-right">色温</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="form-field-6" placeholder="色温" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 色温 ends -->
+
+            <!-- 亮度 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-7" class="col-xs-12 col-sm-3 control-label no-padding-right">亮度</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="form-field-7" placeholder="亮度" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 亮度 ends -->
+
+            <!-- 亮度 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-8" class="col-xs-12 col-sm-3 control-label no-padding-right">出售价格</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" id="form-field-8" placeholder="出售价格" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 亮度 ends -->
+
+            <!-- 数量 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-9" class="col-xs-12 col-sm-3 control-label no-padding-right">数量</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" id="form-field-9" placeholder="数量" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 数量 ends -->
+
+            <!-- 总货款 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-10" class="col-xs-12 col-sm-3 control-label no-padding-right">总货款</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" id="form-field-10" placeholder="总货款" class="width-100" readonly="readonly"/>
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 总货款 ends -->
+
+            <!-- 收款结算 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-12" class="col-xs-12 col-sm-3 control-label no-padding-right">收款结算</label>
+                <div class="col-xs-12 col-sm-5" style="padding-top: 6px;">
+                    <label>
+                        <input id="form-field-12" class="ace ace-switch ace-switch-5" type="checkbox" />
+                        <span class="lbl"></span>
+                    </label>
+                </div>
+            </div>
+            <!-- 付款结算 ends -->
+
+            <!-- 拿货总款 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-13" class="col-xs-12 col-sm-3 control-label no-padding-right">拿货总款</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" id="form-field-13" placeholder="拿货总款" class="width-100" readonly="readonly"/>
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 总货款 ends -->
+
+            <!-- 付款结算 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-14" class="col-xs-12 col-sm-3 control-label no-padding-right">付款结算</label>
+                <div class="col-xs-12 col-sm-5" style="padding-top: 6px;">
+                    <label>
+                        <input id="form-field-14" class="ace ace-switch ace-switch-5" type="checkbox" />
+                        <span class="lbl"></span>
+                    </label>
+                </div>
+            </div>
+            <!-- 收款结算 ends -->
+
+            <!-- 利润 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-15" class="col-xs-12 col-sm-3 control-label no-padding-right">利润</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" id="form-field-15" placeholder="利润" class="width-100" readonly="readonly"/>
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 利润 ends -->
+
+            <!-- 提交，重置按钮 begins-->
+            <div class="clearfix form-actions">
+                <div class="col-md-offset-3 col-md-9">
+                    <button class="btn btn-info" type="submit">
+                        <i class="ace-icon fa fa-check bigger-110"></i>
+                        保存
+                    </button>
+
+                    &nbsp; &nbsp; &nbsp;
+                    <button class="btn" type="reset">
+                        <i class="ace-icon fa fa-undo bigger-110"></i>
+                        重置
+                    </button>
+                </div>
+            </div>
+            <div class="hr hr-24"></div>
+            <!-- 提交，重置按钮 ends-->
+        </form>
+        <!-- PAGE CONTENT ENDS -->
+    </div><!-- /.col -->
+</div><!-- /.row -->
+
+<!-- page specific plugin scripts -->
+<script type="text/javascript">
+    var scripts = [null, "../../assets/js/jquery-ui.custom.js", "../../assets/js/jquery.ui.touch-punch.js", "../../assets/js/chosen.jquery.js", "../../assets/js/fuelux/fuelux.spinner.js", "../../assets/js/date-time/bootstrap-datepicker.js", "../../assets/js/date-time/bootstrap-timepicker.js", "../../assets/js/date-time/moment.js", "../../assets/js/date-time/daterangepicker.js", "../../assets/js/date-time/bootstrap-datetimepicker.js", "../../assets/js/bootstrap-colorpicker.js", "../../assets/js/jquery.knob.js", "../../assets/js/jquery.autosize.js", "../../assets/js/jquery.inputlimiter.1.3.1.js", "../../assets/js/jquery.maskedinput.js", "../../assets/js/bootstrap-tag.js", null]
+    $('.page-content-area').ace_ajax('loadScripts', scripts, function() {
+        //inline scripts related to this page
+
+        $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        })
+    });
+</script>
