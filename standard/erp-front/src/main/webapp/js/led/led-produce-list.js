@@ -35,7 +35,7 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
                             contentType: 'application/json; charset=utf-8',
                             data: JSON.stringify(products),
                             dataType: "json",
-                            type: "post"
+                            type: "DELETE"
                         })
                         .success(function (result) {
                             $.gritter.add({

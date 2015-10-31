@@ -63,8 +63,8 @@ public class LedProduceController {
         return modelAndView;
     }
 
-
-    @RequestMapping(value = "/remove", method = RequestMethod.POST)
+    @ApiOperation(value = "移除产品")
+    @RequestMapping(value = "/remove", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
     public
     @ResponseBody
     Api<List<Product>> remove(@RequestBody List<Product> products) {
