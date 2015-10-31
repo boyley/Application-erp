@@ -3,7 +3,6 @@ package com.github.application.erp.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.domain.Persistable;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import java.sql.Timestamp;
 
@@ -18,7 +17,6 @@ public class Product implements Persistable<Long> {
 
     private String phone;
 
-    @Pattern(regexp = "[\\w!#$%&'*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?", message = "邮箱格式必须包含@符号")
     private String email;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

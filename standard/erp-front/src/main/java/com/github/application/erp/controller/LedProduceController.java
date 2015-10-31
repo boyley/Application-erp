@@ -5,6 +5,8 @@ import com.github.application.erp.controller.search.QueryProduce;
 import com.github.application.erp.controller.web.Api;
 import com.github.application.erp.entity.Product;
 import com.github.application.erp.service.ProductService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,17 +33,20 @@ public class LedProduceController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Page<Product> list(Pageable pageable, QueryProduce queryProduce) {
+    @ApiOperation(value = "分页获取LED列表信息")
+    @RequestMapping(value = "/list", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Page<Product> list(@ApiParam(required = true, value = "分页信息") Pageable pageable, @ApiParam(required = false, value = "查询条件") QueryProduce queryProduce) {
         Page<Product> page = productService.findPager(pageable, queryProduce);
         return page;
     }
 
-    @RequestMapping(value = "/publish", produces = {MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.POST)
+
+    @ApiOperation(value = "添加LED产品")
+    @RequestMapping(value = "/publish", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.POST)
     public
     @ResponseBody
-    Object publish(@Valid Product product, BindingResult result) {
-        log.info("save.................");
+    Object publish(@ApiParam(required = true, value = "添加LED产品") @Valid Product product, BindingResult result) {
+        log.info("publish.................");
         if (result.hasErrors()) {
             return new Api<>(false, 501, result.getAllErrors());
         }
@@ -50,6 +55,14 @@ public class LedProduceController {
         Api<Product> api = new Api<>(!product.isNew(), message, product);
         return api;
     }
+
+    @ApiOperation(value = "添加LED产品页面")
+    @RequestMapping(value = "/publish", method = RequestMethod.GET)
+    public ModelAndView publish() {
+        ModelAndView modelAndView = new ModelAndView("admin/led/led-produce-edit");
+        return modelAndView;
+    }
+
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
     public
@@ -61,8 +74,9 @@ public class LedProduceController {
         return api;
     }
 
-    @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public ModelAndView edit(Long id) {
+    @ApiOperation(value = "修改LED产品")
+    @RequestMapping(value = "/edit", method = RequestMethod.GET, produces = {MediaType.TEXT_HTML_VALUE})
+    public ModelAndView edit(@ApiParam(required = true, value = "需要修改的LED产品ID号") @RequestParam("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("admin/led/led-produce-edit");
         Product product = this.productService.selectByPrimaryKey(id);
         modelAndView.addObject(product);
@@ -70,9 +84,4 @@ public class LedProduceController {
     }
 
 
-    @RequestMapping(value = "/publish", method = RequestMethod.GET)
-    public ModelAndView publish() {
-        ModelAndView modelAndView = new ModelAndView("admin/led/led-produce-edit");
-        return modelAndView;
-    }
 }

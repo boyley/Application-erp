@@ -118,7 +118,8 @@ jQuery(function ($) {
                     search = hash.substring(hash.lastIndexOf('?'),hash.length);
                 }
 
-                return path + url.replace(/\.html/, '') + ".html" + search;
+                return path + url + search;
+                //return path + url.replace(/\.html/, '') + ".html" + search;
                 //for example in Ace PHP demo version we convert "ajax.php#page/dashboard" to "ajax.php?page=dashboard" and load it
                 //return path + "?" + hash.replace(/\//, "=");
             }

@@ -24,7 +24,7 @@
 <div class="row" xmlns:th="http://www.thymeleaf.org">
     <div class="col-xs-12">
         <!-- PAGE CONTENT BEGINS -->
-        <form class="form-horizontal" role="form" action="/led/save" method="post">
+        <form class="form-horizontal" role="form" action="/led/publish" method="post">
             <input type="hidden" th:if="${product != null}"  th:value="${product != null ? product.id : ''}" name="id"/>
             <!-- 生产商 begins -->
             <div class="form-group">
