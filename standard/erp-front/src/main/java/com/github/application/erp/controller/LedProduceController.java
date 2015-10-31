@@ -24,6 +24,7 @@ import java.util.List;
 /**
  * Created by lenovo on 2015/10/3.
  */
+@io.swagger.annotations.Api(value = "LED产品管理")
 @RestController
 @RequestMapping(value = "led")
 public class LedProduceController {
@@ -40,6 +41,12 @@ public class LedProduceController {
         return page;
     }
 
+    @ApiOperation(value = "添加LED产品页面")
+    @RequestMapping(value = "/publish", method = RequestMethod.GET)
+    public ModelAndView publish() {
+        ModelAndView modelAndView = new ModelAndView("admin/led/led-produce-edit");
+        return modelAndView;
+    }
 
     @ApiOperation(value = "添加LED产品")
     @RequestMapping(value = "/publish", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE}, method = RequestMethod.POST)
@@ -56,12 +63,6 @@ public class LedProduceController {
         return api;
     }
 
-    @ApiOperation(value = "添加LED产品页面")
-    @RequestMapping(value = "/publish", method = RequestMethod.GET)
-    public ModelAndView publish() {
-        ModelAndView modelAndView = new ModelAndView("admin/led/led-produce-edit");
-        return modelAndView;
-    }
 
     @ApiOperation(value = "移除产品")
     @RequestMapping(value = "/remove", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
