@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.application.erp.repository.OrderRepository">
+    <resultMap id="BaseResultMap" type="com.github.application.erp.entity.Order">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="order_number" property="orderNumber" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="order_time" property="orderTime" jdbcType="TIMESTAMP"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="produce_id" property="produceId" jdbcType="BIGINT"/>
+        <result column="price" property="price" jdbcType="DOUBLE"/>
+        <result column="sale" property="sale" jdbcType="DOUBLE"/>
+        <result column="number" property="number" jdbcType="INTEGER"/>
+        <result column="order_account" property="orderAccount" jdbcType="VARCHAR"/>
+        <result column="order_user" property="orderUser" jdbcType="VARCHAR"/>
+        <result column="remove" property="remove" jdbcType="BIT"/>
+        <result column="note" property="note" jdbcType="LONGVARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, create_time, order_number, name, order_time, phone, email, produce_id, price, 
+    sale, number, order_account, order_user, remove,note
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="Base_Column_List" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from led_order
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <insert id="insertSelective" parameterType="com.github.application.erp.entity.Order">
+        insert into led_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="orderNumber != null">
+                order_number,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="orderTime != null">
+                order_time,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="produceId != null">
+                produce_id,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="sale != null">
+                sale,
+            </if>
+            <if test="number != null">
+                number,
+            </if>
+            <if test="orderAccount != null">
+                order_account,
+            </if>
+            <if test="orderUser != null">
+                order_user,
+            </if>
+            <if test="remove != null">
+                remove,
+            </if>
+            <if test="note != null">
+                note,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderNumber != null">
+                #{orderNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTime != null">
+                #{orderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="produceId != null">
+                #{produceId,jdbcType=BIGINT},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DOUBLE},
+            </if>
+            <if test="sale != null">
+                #{sale,jdbcType=DOUBLE},
+            </if>
+            <if test="number != null">
+                #{number,jdbcType=INTEGER},
+            </if>
+            <if test="orderAccount != null">
+                #{orderAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="orderUser != null">
+                #{orderUser,jdbcType=VARCHAR},
+            </if>
+            <if test="remove != null">
+                #{remove,jdbcType=BIT},
+            </if>
+            <if test="note != null">
+                #{note,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.github.application.erp.entity.Order">
+        update led_order
+        <set>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderNumber != null">
+                order_number = #{orderNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="orderTime != null">
+                order_time = #{orderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="produceId != null">
+                produce_id = #{produceId,jdbcType=BIGINT},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DOUBLE},
+            </if>
+            <if test="sale != null">
+                sale = #{sale,jdbcType=DOUBLE},
+            </if>
+            <if test="number != null">
+                number = #{number,jdbcType=INTEGER},
+            </if>
+            <if test="orderAccount != null">
+                order_account = #{orderAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="orderUser != null">
+                order_user = #{orderUser,jdbcType=VARCHAR},
+            </if>
+            <if test="remove != null">
+                remove = #{remove,jdbcType=BIT},
+            </if>
+            <if test="note != null">
+                note = #{note,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
