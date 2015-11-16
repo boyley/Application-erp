@@ -19,6 +19,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Page<Order> findPager(Pageable pageable, Order query) {
-        return null;
+        return orderRepository.findAll(pageable,query);
     }
 }
