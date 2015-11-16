@@ -20,16 +20,17 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-    id, create_time, order_number, name, order_time, phone, email, produce_id, price, 
-    sale, number, order_account, order_user, remove,note
-  </sql>
+        id, create_time, order_number, name, order_time, phone, email, produce_id, price,
+        sale, number, order_account, order_user, remove,note
+      </sql>
 
-    <select id="selectByPrimaryKey" resultMap="Base_Column_List" parameterType="java.lang.Long">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
         from led_order
         where id = #{id,jdbcType=BIGINT}
     </select>
+
     <insert id="insertSelective" parameterType="com.github.application.erp.entity.Order">
         insert into led_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -127,6 +128,7 @@
             </if>
         </trim>
     </insert>
+
     <update id="updateByPrimaryKeySelective" parameterType="com.github.application.erp.entity.Order">
         update led_order
         <set>

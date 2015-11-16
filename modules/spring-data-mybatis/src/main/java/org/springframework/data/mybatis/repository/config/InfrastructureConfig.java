@@ -46,9 +46,9 @@ public class InfrastructureConfig {
     @ConfigurationProperties(prefix = "spring.dataSource")
     public DataSource dataSource() {
         DruidDataSource dataSource = new DruidDataSource();
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/erp");
-//        dataSource.setUsername("root");
-//        dataSource.setPassword("root");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/erp");
+        dataSource.setUsername("root");
+        dataSource.setPassword("root");
         return dataSource;
     }
 
