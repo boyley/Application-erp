@@ -53,7 +53,6 @@ public class LedProduceController {
     public
     @ResponseBody
     Object publish(@ApiParam(required = true, value = "添加LED产品") @Valid Product product, BindingResult result) {
-        log.info("publish.................");
         if (result.hasErrors()) {
             return new Api<>(false, 501, result.getAllErrors());
         }
@@ -69,7 +68,6 @@ public class LedProduceController {
     public
     @ResponseBody
     Api<List<Product>> remove(@RequestBody List<Product> products) {
-        log.info("remove.................");
         int count = this.productService.remove(products);
         Api<List<Product>> api = new Api<>(count > 0, count > 0 ? HttpStatus.OK.value() : HttpStatus.INTERNAL_SERVER_ERROR.value(), products);
         return api;

@@ -21,4 +21,14 @@ public class OrderServiceImpl implements OrderService {
     public Page<Order> findPager(Pageable pageable, Order query) {
         return orderRepository.findAll(pageable,query);
     }
+
+    @Override
+    public Order save(Order order) {
+        return null;
+    }
+
+    @Override
+    public Order selectByPrimaryKey(Long id) {
+        return this.orderRepository.findOne(id);
+    }
 }

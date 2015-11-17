@@ -10,4 +10,8 @@ import org.springframework.data.domain.Pageable;
 public interface OrderService {
 
     Page<Order> findPager(Pageable pageable, Order query);
+
+    Order save(Order order);
+
+    Order selectByPrimaryKey(Long id); 
 }

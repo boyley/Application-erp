@@ -28,6 +28,11 @@
         select
         <include refid="Base_Column_List"/>
         from led_order
+        <where>
+            <if test="pk != null">
+                and id = #{pk.value}
+            </if>
+        </where>
     </select>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">

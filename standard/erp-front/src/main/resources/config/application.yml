@@ -23,6 +23,7 @@ spring:
 ---
 logging:
     file: /logs/erp.log
+    level: trace
 
 ---
 server:

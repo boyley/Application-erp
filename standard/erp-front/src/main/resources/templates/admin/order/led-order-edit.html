@@ -1,5 +1,4 @@
-<title>LED-产品订单</title>
-
+<title>订单管理</title>
 
 <link rel="stylesheet" href="../../assets/css/jquery-ui.custom.css"/>
 <link rel="stylesheet" href="../../assets/css/chosen.css"/>
@@ -15,77 +14,83 @@
         LED
         <small>
             <i class="ace-icon fa fa-angle-double-right"></i>
-            编辑
+            订单
         </small>
     </h1>
 </div><!-- /.page-header -->
 
 <!-- ajax layout which only needs content area -->
-<div class="row" xmlns:th="http://www.thymeleaf.org">
+<div class="row">
     <div class="col-xs-12">
         <!-- PAGE CONTENT BEGINS -->
-        <form class="form-horizontal" role="form" action="/led/save" method="post" th:if="${#lists.size(products)} > 0">
-            <!-- 单号 begins -->
-            <div class="form-group">
-                <label for="form-field-1" class="col-xs-12 col-sm-3 control-label no-padding-right">单号<b
-                        class="text-danger">&nbsp;*</b></label>
+        <form class="form-horizontal" role="form" action="#">
 
+            <!-- 单据号 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-11" class="col-xs-12 col-sm-3 control-label no-padding-right">单据号</label>
                 <div class="col-xs-12 col-sm-5">
                     <span class="block input-icon input-icon-right">
-                        <input type="text"
-                               required="required"
-                               pattern=".{6,30}"
-                               maxlength="30"
-                               id="form-field-1"
-                               placeholder="请输入单号"
-                               title="单号字符的长度在6~30之间"
-                               class="width-100"
-                                />
-                        <i class="ace-icon fa fa-times-circle hide"></i>
+                        <input type="text" id="form-field-11" placeholder="单据号" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
                     </span>
                 </div>
                 <div class="help-block col-xs-12 col-sm-reset inline">
-                    单号字符的长度在6~30之间(不能作为唯一判断)
+                    Warning tip help!
                 </div>
             </div>
-            <!-- 单号 ends -->
+            <!-- 单据号 ends -->
 
-            <!-- 客户名 begins -->
-            <div class="form-group">
-                <label for="form-field-2" class="col-xs-12 col-sm-3 control-label no-padding-right">客户名<b
-                        class="text-danger">&nbsp;*</b></label>
-
+            <!-- 客户名称 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-1" class="col-xs-12 col-sm-3 control-label no-padding-right">客户名称</label>
                 <div class="col-xs-12 col-sm-5">
                     <span class="block input-icon input-icon-right">
-                        <input type="text"
-                               required="required"
-                               pattern=".{2,30}"
-                               maxlength="30"
-                               id="form-field-2"
-                               placeholder="请输入客户名"
-                               title="客户名字符的长度在2~30之间"
-                               class="width-100"
-                                />
-                        <i class="ace-icon fa fa-times-circle hide"></i>
+                        <input type="text" id="form-field-1" placeholder="客户名称" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
                     </span>
                 </div>
                 <div class="help-block col-xs-12 col-sm-reset inline">
-                    客户名字符的长度在2~30之间
+                    Warning tip help!
                 </div>
             </div>
-            <!-- 客户名 ends -->
+            <!-- 客户名称 ends -->
+
+            <!-- 联系电话 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-2" class="col-xs-12 col-sm-3 control-label no-padding-right">联系电话</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="form-field-2" placeholder="联系电话" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 联系电话 ends -->
+
+            <!-- Email begins -->
+            <div class="form-group has-success">
+                <label for="form-field-3" class="col-xs-12 col-sm-3 control-label no-padding-right">Email</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="form-field-3" placeholder="Email" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- Email ends -->
 
             <!-- 日期 begins -->
-            <div class="form-group">
-                <label for="form-field-3" class="col-xs-12 col-sm-3 control-label no-padding-right">日期</label>
+            <div class="form-group has-success">
+                <label for="form-field-4" class="col-xs-12 col-sm-3 control-label no-padding-right">日期</label>
                 <div class="col-xs-12 col-sm-5">
                     <div class="input-group">
-                        <input class="form-control date-picker"
-                               id="form-field-3"
-                               type="text"
-                               required="required"
-                               placeholder="年 / 月/日"
-                               data-date-format="yyyy-mm-dd" />
+                        <input class="form-control date-picker" id="form-field-4" type="text" placeholder="日期" data-date-format="yyyy-mm-dd" />
                         <span class="input-group-addon">
                             <!--<i class="ace-icon fa fa-check-circle"></i>-->
                             <i class="fa fa-calendar bigger-110"></i>
@@ -93,222 +98,154 @@
                     </div>
                 </div>
                 <div class="help-block col-xs-12 col-sm-reset inline">
-                    日期格式为“年 / 月/日”
+                    Warning tip help!
                 </div>
             </div>
             <!-- 日期 ends -->
 
-            <!-- 联系电话 begins -->
-            <div class="form-group">
-                <label for="form-field-4" class="col-xs-12 col-sm-3 control-label no-padding-right">联系电话</label>
-
+            <!-- 型号 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-5" class="col-xs-12 col-sm-3 control-label no-padding-right">型号</label>
                 <div class="col-xs-12 col-sm-5">
                     <span class="block input-icon input-icon-right">
-                        <input type="text" id="form-field-4"
-                               placeholder="联系电话"
-                               title="请输入联系电话"
-                               class="width-100"
-                                />
-                        <i class="ace-icon fa fa-times-circle hide"></i>
-                    </span>
-                </div>
-            </div>
-            <!-- 联系电话 ends -->
-
-            <!-- Email begins -->
-            <div class="form-group">
-                <label for="form-field-5" class="col-xs-12 col-sm-3 control-label no-padding-right">Email</label>
-
-                <div class="col-xs-12 col-sm-5">
-                    <span class="block input-icon input-icon-right">
-                        <input type="email"
-                               id="form-field-5"
-                               placeholder="请输入客户Email"
-                               title="Email格式必须包含@符号"
-                               class="width-100"
-                                />
-                        <i class="ace-icon fa fa-times-circle hide"></i>
+                        <input type="text" id="form-field-5" placeholder="型号" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
                     </span>
                 </div>
                 <div class="help-block col-xs-12 col-sm-reset inline">
-                    Email格式必须包含@符号
-                </div>
-            </div>
-            <!-- Email ends -->
-
-            <!-- 型号 begins -->
-            <div class="form-group">
-                <label for="form-field-6" class="col-xs-12 col-sm-3 control-label no-padding-right">型号-色温-亮度<b
-                        class="text-danger">&nbsp;*</b></label>
-
-                <div class="col-xs-12 col-sm-5">
-                    <span class="block input-icon input-icon-right">
-                        <select class="chosen-select form-control width-100 calculate" id="form-field-6" data-placeholder="请选择led型号" required="required" >
-                            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.typ} + '-' + ${product.colourTemperature}+ '-' + ${product.bri}" th:attr="price=${product.price}"></option>
-                        </select>
-                        <i class="ace-icon fa fa-times-circle hide"></i>
-                    </span>
+                    Warning tip help!
                 </div>
             </div>
             <!-- 型号 ends -->
 
             <!-- 色温 begins -->
-            <!--<div class="form-group">
-                <label for="form-field-7" class="col-xs-12 col-sm-3 control-label no-padding-right">色温<b
-                        class="text-danger">&nbsp;*</b></label>
-
+            <div class="form-group has-success">
+                <label for="form-field-6" class="col-xs-12 col-sm-3 control-label no-padding-right">色温</label>
                 <div class="col-xs-12 col-sm-5">
                     <span class="block input-icon input-icon-right">
-                        <input type="text" required="required" id="form-field-7" placeholder="色温"
-                               title="请输入色温"
-                               class="width-100"
-                                />
-                        <i class="ace-icon fa fa-times-circle hide"></i>
-                    </span>
-                </div>
-            </div>-->
-            <!-- 色温 ends -->
-
-            <!-- 亮度 begins -->
-            <!--<div class="form-group">
-                <label for="form-field-8" class="col-xs-12 col-sm-3 control-label no-padding-right">亮度<b
-                        class="text-danger">&nbsp;*</b></label>
-
-                <div class="col-xs-12 col-sm-5">
-                    <span class="block input-icon input-icon-right">
-                        <input type="text" required="required" id="form-field-8" placeholder="亮度"
-                               title="请输入亮度"
-                               class="width-100"
-                                />
-                        <i class="ace-icon fa fa-times-circle hide"></i>
-                    </span>
-                </div>
-            </div>-->
-            <!-- 亮度 ends -->
-
-            <!-- 进货单价 begins -->
-            <div class="form-group">
-                <label for="form-field-9" class="col-xs-12 col-sm-3 control-label no-padding-right">进货单价(单位：元)</label>
-
-                <div class="col-xs-12 col-sm-5">
-                    <span class="block input-icon input-icon-right">
-                        <input type="number" step="any" required="required" id="form-field-9" placeholder="进货单价"
-                               title="请输入进货单价"
-                               class="width-100"
-                               name="price"
-                               readonly="readonly"
-                                />
-                        <i class="ace-icon fa fa-times-circle hide"></i>
-                    </span>
-                </div>
-            </div>
-            <!-- 进货单价 ends -->
-
-            <!-- 数量 begins -->
-            <div class="form-group">
-                <label for="form-field-10" class="col-xs-12 col-sm-3 control-label no-padding-right">数量<b
-                        class="text-danger">&nbsp;*</b></label>
-
-                <div class="col-xs-12 col-sm-5">
-                    <span class="block input-icon input-icon-right">
-                        <input type="number"
-                               required="required"
-                               pattern="\d+"
-                               id="form-field-10"
-                               placeholder="请输入销售数量"
-                               title="销售数量格式为正整数"
-                               class="width-100 calculate"
-                               name="number"
-                                />
-                        <i class="ace-icon fa fa-times-circle hide"></i>
+                        <input type="text" id="form-field-6" placeholder="色温" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
                     </span>
                 </div>
                 <div class="help-block col-xs-12 col-sm-reset inline">
-                    销售数量格式为正整数
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 色温 ends -->
+
+            <!-- 亮度 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-7" class="col-xs-12 col-sm-3 control-label no-padding-right">亮度</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="text" id="form-field-7" placeholder="亮度" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 亮度 ends -->
+
+            <!-- 亮度 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-8" class="col-xs-12 col-sm-3 control-label no-padding-right">出售价格</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" id="form-field-8" placeholder="出售价格" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 亮度 ends -->
+
+            <!-- 数量 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-9" class="col-xs-12 col-sm-3 control-label no-padding-right">数量</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" id="form-field-9" placeholder="数量" class="width-100" />
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
                 </div>
             </div>
             <!-- 数量 ends -->
 
-            <!-- 拿货总款 begins -->
-            <div class="form-group">
-                <label for="form-field-11" class="col-xs-12 col-sm-3 control-label no-padding-right">拿货总款(单位：元)</label>
-
+            <!-- 总货款 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-10" class="col-xs-12 col-sm-3 control-label no-padding-right">总货款</label>
                 <div class="col-xs-12 col-sm-5">
                     <span class="block input-icon input-icon-right">
-                        <input type="text" required="required" id="form-field-11" placeholder="拿货总款"
-                               title="请输入拿货总款"
-                               class="width-100"
-                               readonly="readonly"
-                               name="allPrice"
-                                />
-                        <i class="ace-icon fa fa-times-circle hide"></i>
-                    </span>
-                </div>
-            </div>
-            <!-- 拿货总款 ends -->
-
-            <!-- 出售价格 begins -->
-            <div class="form-group">
-                <label for="form-field-12" class="col-xs-12 col-sm-3 control-label no-padding-right">出售价格(单位：元)<b
-                        class="text-danger">&nbsp;*</b></label>
-
-                <div class="col-xs-12 col-sm-5">
-                    <span class="block input-icon input-icon-right">
-                        <input type="number"
-                               required="required"
-                               pattern="[1-9]\d*\.\d*|0\.\d*[1-9]\d*"
-                               id="form-field-12"
-                               placeholder="请输入出售价格"
-                               step="any"
-                               title="出售价格格式为整数或小数"
-                               class="width-100 calculate"
-                               name="sale"
-                                />
-                        <i class="ace-icon fa fa-times-circle hide"></i>
+                        <input type="number" id="form-field-10" placeholder="总货款" class="width-100" readonly="readonly"/>
+                        <i class="ace-icon fa fa-check-circle"></i>
                     </span>
                 </div>
                 <div class="help-block col-xs-12 col-sm-reset inline">
-                    出售价格格式为整数或小数
-                </div>
-            </div>
-            <!-- 出售价格 ends -->
-
-            <!-- 总货款 begins -->
-            <div class="form-group">
-                <label for="form-field-12" class="col-xs-12 col-sm-3 control-label no-padding-right">总货款(单位：元)</label>
-
-                <div class="col-xs-13 col-sm-5">
-                    <span class="block input-icon input-icon-right">
-                        <input type="text" required="required" id="form-field-13" placeholder="总货款"
-                               title="请输入总货款"
-                               class="width-100"
-                               readonly="readonly"
-                               name="allSale"
-                                />
-                        <i class="ace-icon fa fa-times-circle hide"></i>
-                    </span>
+                    Warning tip help!
                 </div>
             </div>
             <!-- 总货款 ends -->
 
-            <!-- 利润 begins -->
-            <div class="form-group">
-                <label for="form-field-14" class="col-xs-12 col-sm-3 control-label no-padding-right">利润</label>
+            <!-- 收款结算 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-12" class="col-xs-12 col-sm-3 control-label no-padding-right">收款结算</label>
+                <div class="col-xs-12 col-sm-5" style="padding-top: 6px;">
+                    <label>
+                        <input id="form-field-12" class="ace ace-switch ace-switch-5" type="checkbox" />
+                        <span class="lbl"></span>
+                    </label>
+                </div>
+            </div>
+            <!-- 付款结算 ends -->
 
-                <div class="col-xs-13 col-sm-5">
+            <!-- 拿货总款 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-13" class="col-xs-12 col-sm-3 control-label no-padding-right">拿货总款</label>
+                <div class="col-xs-12 col-sm-5">
                     <span class="block input-icon input-icon-right">
-                        <input type="text" required="required" id="form-field-14" placeholder="利润"
-                               title="请输入利润"
-                               class="width-100"
-                               readonly="readonly"
-                               name="profit"
-                                />
-                        <i class="ace-icon fa fa-times-circle hide"></i>
+                        <input type="number" id="form-field-13" placeholder="拿货总款" class="width-100" readonly="readonly"/>
+                        <i class="ace-icon fa fa-check-circle"></i>
                     </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
+                </div>
+            </div>
+            <!-- 总货款 ends -->
+
+            <!-- 付款结算 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-14" class="col-xs-12 col-sm-3 control-label no-padding-right">付款结算</label>
+                <div class="col-xs-12 col-sm-5" style="padding-top: 6px;">
+                    <label>
+                        <input id="form-field-14" class="ace ace-switch ace-switch-5" type="checkbox" />
+                        <span class="lbl"></span>
+                    </label>
+                </div>
+            </div>
+            <!-- 收款结算 ends -->
+
+            <!-- 利润 begins -->
+            <div class="form-group has-success">
+                <label for="form-field-15" class="col-xs-12 col-sm-3 control-label no-padding-right">利润</label>
+                <div class="col-xs-12 col-sm-5">
+                    <span class="block input-icon input-icon-right">
+                        <input type="number" id="form-field-15" placeholder="利润" class="width-100" readonly="readonly"/>
+                        <i class="ace-icon fa fa-check-circle"></i>
+                    </span>
+                </div>
+                <div class="help-block col-xs-12 col-sm-reset inline">
+                    Warning tip help!
                 </div>
             </div>
             <!-- 利润 ends -->
-
 
             <!-- 提交，重置按钮 begins-->
             <div class="clearfix form-actions">
@@ -323,35 +260,13 @@
                         <i class="ace-icon fa fa-undo bigger-110"></i>
                         重置
                     </button>
-                    &nbsp; &nbsp; &nbsp;
-                    <a class="btn btn-primary" data-url="page/admin/order/led-order-list.html"
-                       href="#page/admin/order/led-order-list.html">
-                        <i class="ace-icon fa fa-reply bigger-110"></i>
-                        返回
-                    </a>
                 </div>
             </div>
             <div class="hr hr-24"></div>
             <!-- 提交，重置按钮 ends-->
-
         </form>
-        <div th:if="${#lists.size(products)} == 0">
-            <div class="alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert">
-                    <i class="ace-icon fa fa-times"></i>
-                </button>
-
-                <strong>
-                    <i class="ace-icon fa fa-times"></i>
-                    Oh snap!
-                </strong>
-                没有LED产品可选择，请<a href="#led/publish" data-url="led/publish">返回LED产品页面添加</a>
-                <br />
-            </div>
-        </div>
         <!-- PAGE CONTENT ENDS -->
-    </div>
-    <!-- /.col -->
+    </div><!-- /.col -->
 </div><!-- /.row -->
 <!-- page specific plugin scripts -->
 <script type="text/javascript" src="/js/order/led-order-edit.js"></script>

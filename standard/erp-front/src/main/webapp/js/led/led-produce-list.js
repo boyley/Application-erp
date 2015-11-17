@@ -14,11 +14,16 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
 
         $("table tbody").on(ace.click_event, '.bootbox-confirm-edit', function () {
             var target = $(this);
-            bootbox.confirm("<h1>确定修改吗?</h1>", function (result) {
-                if (result) {
-                    var url = '#led/edit?id=' + target.attr('identity');
-                    $('.page-content-area[data-ajax-content=true]').ace_ajax('loadUrl', url);
-                    window.location.href = url;
+            bootbox.confirm({
+                title: '提示',
+                size: 'small',
+                message: "确认修改吗?",
+                callback: function (result) {
+                    if (result) {
+                        var url = '#led/edit?id=' + target.attr('identity');
+                        $('.page-content-area[data-ajax-content=true]').ace_ajax('loadUrl', url);
+                        window.location.href = url;
+                    }
                 }
             });
             return false;
@@ -26,29 +31,35 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
 
         $("table tbody").on(ace.click_event, '.bootbox-confirm-delete', function () {
             var target = $(this);
-            bootbox.confirm("<h1>确定删除吗?</h1>", function (result) {
-                if (result) {
-                    $('.page-content-area').ace_ajax('startLoading');
-                    var products = [{id: target.attr('identity'), remove: true}];
-                    $.ajax('/led/remove',
-                        {
-                            contentType: 'application/json; charset=utf-8',
-                            data: JSON.stringify(products),
-                            dataType: "json",
-                            type: "DELETE"
-                        })
-                        .success(function (result) {
-                            $.gritter.add({
-                                title: '删除提示',
-                                text: result.success ? '删除成功' : '删除失败',
-                                class_name: 'gritter-center '+ (result.success ? 'gritter-success' : 'gritter-error'),
-                                time: 700
+            bootbox.confirm({
+                title: '提示',
+                size: 'small',
+                message: "确定删除吗?",
+                callback: function (result) {
+                    if (result) {
+                        $('.page-content-area').ace_ajax('startLoading');
+                        var products = [{id: target.attr('identity'), remove: true}];
+                        $.ajax('/led/remove',
+                            {
+                                contentType: 'application/json; charset=utf-8',
+                                data: JSON.stringify(products),
+                                dataType: "json",
+                                type: "DELETE"
+                            })
+                            .success(function (result) {
+                                $.gritter.add({
+                                    title: '删除提示',
+                                    size: 'small',
+                                    text: result.success ? '删除成功' : '删除失败',
+                                    class_name: 'gritter-center '+ (result.success ? 'gritter-success' : 'gritter-error'),
+                                    time: 700
+                                });
+                                var currentPageIndex = $("#pagination").data().page.currentPageIndex;
+                                $("#pagination").page('remote', currentPageIndex);
+                            }).complete(function (jqXHR, textStatus) {
+                                $('.page-content-area').ace_ajax('stopLoading', true);
                             });
-                            var currentPageIndex = $("#pagination").data().page.currentPageIndex;
-                            $("#pagination").page('remote', currentPageIndex);
-                        }).complete(function (jqXHR, textStatus) {
-                            $('.page-content-area').ace_ajax('stopLoading', true);
-                        });
+                    }
                 }
             });
             return false;
