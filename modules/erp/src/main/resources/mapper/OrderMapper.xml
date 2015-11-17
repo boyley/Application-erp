@@ -19,18 +19,53 @@
         <result column="note" property="note" jdbcType="LONGVARCHAR"/>
     </resultMap>
 
+    <resultMap id="Association_ResultMap" type="com.github.application.erp.entity.Order" extends="BaseResultMap">
+        <association property="product" columnPrefix="prod_"
+                     javaType="com.github.application.erp.entity.Product"
+                     resultMap="com.github.application.erp.repository.ProductRepository.BaseResultMap"/>
+    </resultMap>
+
     <sql id="Base_Column_List">
         id, create_time, order_number, name, order_time, phone, email, produce_id, price,
         sale, number, order_account, order_user, remove,note
       </sql>
 
-    <select id="find" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from led_order
+    <select id="find" resultMap="Association_ResultMap">
+        SELECT
+        lor.id AS id,
+        lor.create_time AS create_time,
+        lor.order_number AS order_number,
+        lor.`name` AS `name`,
+        lor.order_time AS order_time,
+        lor.phone AS phone,
+        lor.email AS email,
+        lor.produce_id AS produce_id,
+        lor.price AS price,
+        lor.sale AS sale,
+        lor.number AS number,
+        lor.order_account AS order_account,
+        lor.order_user AS order_user,
+        lor.`remove` AS `remove`,
+        lor.note AS note,
+        prod.id AS prod_id,
+        prod.producer prod_producer,
+        prod.contact prod_contact,
+        prod.email prod_email,
+        prod.phone prod_phone,
+        prod.create_time prod_create_time,
+        prod.update_time prod_update_time,
+        prod.typ prod_typ,
+        prod.colour_temperature prod_colour_temperature,
+        prod.bri prod_bri,
+        prod.price prod_price,
+        prod.note prod_note,
+        prod.remove prod_remove
+        FROM
+        led_order lor
+        INNER JOIN product prod ON (lor.produce_id = prod.id)
         <where>
             <if test="pk != null">
-                and id = #{pk.value}
+                and lor.id = #{pk.value}
             </if>
         </where>
     </select>
