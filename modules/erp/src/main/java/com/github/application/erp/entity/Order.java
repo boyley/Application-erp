@@ -21,8 +21,6 @@ public class Order implements Persistable<Long> {
 
     private Long produceId;
 
-    private Product product;
-
     private Double price;
 
     private Double sale;
@@ -104,14 +102,6 @@ public class Order implements Persistable<Long> {
 
     public void setProduceId(Long produceId) {
         this.produceId = produceId;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 
     public Double getPrice() {

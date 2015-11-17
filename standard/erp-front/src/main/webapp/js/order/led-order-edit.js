@@ -53,15 +53,21 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
         }
     })
 
+
+    /**选择LED产品事件*/
     if(!ace.vars['touch']) {
         $('select.chosen-select').chosen({allow_single_deselect:true,no_results_text:'无可匹配的结果'})
             .trigger("chosen:updated.chosen")
             .ready(function() {
-                $('div.form-group input[name="price"]').val($('select.chosen-select option').first().attr('price'));
+                console.info($('div.form-group input[name="price"]').val());
+                if(!$('div.form-group input[name="price"]').val()) {
+                    $('div.form-group input[name="price"]').val($('select.chosen-select option').first().attr('price'));
+                }
             })
             .change(function(event,option) {
             var id = option.selected;
             var selected =$('select.chosen-select option[value="' + id + '"]');
+                console.info(selected);
             $('div.form-group input[name="price"]').val(selected.attr('price'));
         });
     }

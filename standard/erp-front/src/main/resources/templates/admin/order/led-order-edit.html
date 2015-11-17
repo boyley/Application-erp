@@ -150,8 +150,8 @@
 
                 <div class="col-xs-12 col-sm-5">
                     <span class="block input-icon input-icon-right">
-                        <select class="chosen-select form-control width-100 calculate" id="form-field-6" data-placeholder="请选择led型号" required="required" th:value="${order != null ? order.product.id : ''}">
-                            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.typ} + '-' + ${product.colourTemperature}+ '-' + ${product.bri}" th:attr="price=${product.price}"></option>
+                        <select class="chosen-select form-control width-100 calculate" id="form-field-6" data-placeholder="请选择led型号" required="required" th:value="${order != null ? order.produceId : ''}">
+                            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.typ} + '-' + ${product.colourTemperature}+ '-' + ${product.bri}" th:attr="price=${product.price}" th:selected="${order.produceId eq product.id}"></option>
                         </select>
                         <i class="ace-icon fa fa-times-circle hide"></i>
                     </span>
@@ -201,11 +201,11 @@
                                title="请输入进货单价"
                                class="width-100"
                                name="price"
-                               readonly="readonly"
                                th:value="${order != null ? order.price : ''}"
                                 />
                         <i class="ace-icon fa fa-times-circle hide"></i>
                     </span>
+
                 </div>
             </div>
             <!-- 进货单价 ends -->
@@ -246,7 +246,6 @@
                                title="请输入拿货总款"
                                class="width-100"
                                readonly="readonly"
-                               name="allPrice"
                                th:value="${order != null ? order.number * order.price : ''}"
                                 />
                         <i class="ace-icon fa fa-times-circle hide"></i>
@@ -292,7 +291,7 @@
                                title="请输入总货款"
                                class="width-100"
                                readonly="readonly"
-                               name="allSale"
+                               th:value="${order != null ? order.number * order.sale : ''}"
                                 />
                         <i class="ace-icon fa fa-times-circle hide"></i>
                     </span>
@@ -310,7 +309,7 @@
                                title="请输入利润"
                                class="width-100"
                                readonly="readonly"
-                               name="profit"
+                               th:value="${order != null ? (order.number * order.sale) - (order.number * order.price) : ''}"
                                 />
                         <i class="ace-icon fa fa-times-circle hide"></i>
                     </span>
@@ -363,5 +362,4 @@
     <!-- /.col -->
 </div><!-- /.row -->
 <!-- page specific plugin scripts -->
-<script type="text/javascript" src="/js/order/led-order-edit.js"></script>
 <script type="text/javascript" src="/js/order/led-order-edit.js"></script>
