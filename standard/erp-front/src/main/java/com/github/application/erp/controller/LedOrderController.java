@@ -45,8 +45,10 @@ public class LedOrderController {
     @RequestMapping(value = "/edit", method = RequestMethod.GET, produces = {MediaType.TEXT_HTML_VALUE})
     public ModelAndView edit(@ApiParam(required = true, value = "需要修改的LED订单ID号") @RequestParam("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("/admin/order/led-order-edit");
-        Order order = this.orderService.selectByPrimaryKey(id);
+        Order order = this.orderService.findOne(id);
         modelAndView.addObject(order);
+        List<Product> products = productService.find(new QueryProduce());
+        modelAndView.addObject("products", products);
         return modelAndView;
     }
 

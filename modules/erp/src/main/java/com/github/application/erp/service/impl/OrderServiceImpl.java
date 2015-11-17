@@ -28,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order selectByPrimaryKey(Long id) {
+    public Order findOne(Long id) {
         return this.orderRepository.findOne(id);
     }
 }

@@ -13,5 +13,5 @@ public interface OrderService {
 
     Order save(Order order);
 
-    Order selectByPrimaryKey(Long id); 
+    Order findOne(Long id);
 }
