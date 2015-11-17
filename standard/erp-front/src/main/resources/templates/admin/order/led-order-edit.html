@@ -24,7 +24,7 @@
 <div class="row" xmlns:th="http://www.thymeleaf.org">
     <div class="col-xs-12">
         <!-- PAGE CONTENT BEGINS -->
-        <form class="form-horizontal" role="form" action="/led/save" method="post" th:if="${#lists.size(products)} > 0">
+        <form class="form-horizontal" role="form" action="/order/publish" method="post" th:if="${#lists.size(products)} > 0">
             <input type="hidden" th:if="${order != null}"  th:value="${order != null ? order.id : ''}" name="id"/>
             <!-- 单号 begins -->
             <div class="form-group">
@@ -41,6 +41,7 @@
                                placeholder="请输入单号"
                                title="单号字符的长度在6~30之间"
                                class="width-100"
+                               name="orderNumber"
                                th:value="${order != null ? order.orderNumber : ''}"
                                 />
                         <i class="ace-icon fa fa-times-circle hide"></i>
@@ -67,6 +68,7 @@
                                placeholder="请输入客户名"
                                title="客户名字符的长度在2~30之间"
                                class="width-100"
+                               name="name"
                                th:value="${order != null ? order.name : ''}"
                                 />
                         <i class="ace-icon fa fa-times-circle hide"></i>
@@ -89,6 +91,7 @@
                                required="required"
                                placeholder="年 / 月/日"
                                data-date-format="yyyy-mm-dd"
+                               name="orderTime"
                                th:value="${order != null ? order.orderTime : ''}"
                                 />
                         <span class="input-group-addon">
@@ -113,6 +116,7 @@
                                placeholder="联系电话"
                                title="请输入联系电话"
                                class="width-100"
+                               name="phone"
                                th:value="${order != null ? order.phone : ''}"
                                 />
                         <i class="ace-icon fa fa-times-circle hide"></i>
@@ -132,6 +136,7 @@
                                placeholder="请输入客户Email"
                                title="Email格式必须包含@符号"
                                class="width-100"
+                               name="email"
                                th:value="${order != null ? order.email : ''}"
                                 />
                         <i class="ace-icon fa fa-times-circle hide"></i>
@@ -150,8 +155,13 @@
 
                 <div class="col-xs-12 col-sm-5">
                     <span class="block input-icon input-icon-right">
-                        <select class="chosen-select form-control width-100 calculate" id="form-field-6" data-placeholder="请选择led型号" required="required" th:value="${order != null ? order.produceId : ''}">
-                            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.typ} + '-' + ${product.colourTemperature}+ '-' + ${product.bri}" th:attr="price=${product.price}" th:selected="${order.produceId eq product.id}"></option>
+                        <select class="chosen-select form-control width-100 calculate"
+                                id="form-field-6"
+                                data-placeholder="请选择led型号"
+                                name="produceId"
+                                required="required" th:value="${order != null ? order.produceId : ''}"
+                                >
+                            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.typ} + '-' + ${product.colourTemperature}+ '-' + ${product.bri}" th:attr="price=${product.price}" th:selected="${order != null ? order.produceId eq product.id : 'false'}"></option>
                         </select>
                         <i class="ace-icon fa fa-times-circle hide"></i>
                     </span>
@@ -246,6 +256,7 @@
                                title="请输入拿货总款"
                                class="width-100"
                                readonly="readonly"
+                               name="allPrice"
                                th:value="${order != null ? order.number * order.price : ''}"
                                 />
                         <i class="ace-icon fa fa-times-circle hide"></i>
@@ -291,6 +302,7 @@
                                title="请输入总货款"
                                class="width-100"
                                readonly="readonly"
+                               name="allSale"
                                th:value="${order != null ? order.number * order.sale : ''}"
                                 />
                         <i class="ace-icon fa fa-times-circle hide"></i>
@@ -309,6 +321,7 @@
                                title="请输入利润"
                                class="width-100"
                                readonly="readonly"
+                               name="profit"
                                th:value="${order != null ? (order.number * order.sale) - (order.number * order.price) : ''}"
                                 />
                         <i class="ace-icon fa fa-times-circle hide"></i>

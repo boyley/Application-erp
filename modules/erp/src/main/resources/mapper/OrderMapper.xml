@@ -42,12 +42,9 @@
         where id = #{id,jdbcType=BIGINT}
     </select>
 
-    <insert id="insertSelective" parameterType="com.github.application.erp.entity.Order">
+    <insert id="insert" parameterType="com.github.application.erp.entity.Order" useGeneratedKeys="true" keyProperty="id">
         insert into led_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
             <if test="createTime != null">
                 create_time,
             </if>
@@ -92,9 +89,6 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=BIGINT},
-            </if>
             <if test="createTime != null">
                 #{createTime,jdbcType=TIMESTAMP},
             </if>
@@ -140,7 +134,7 @@
         </trim>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.github.application.erp.entity.Order">
+    <update id="update" parameterType="com.github.application.erp.entity.Order" useGeneratedKeys="true" keyProperty="id">
         update led_order
         <set>
             <if test="createTime != null">

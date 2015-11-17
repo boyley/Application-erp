@@ -2,6 +2,8 @@ package com.github.application.erp.entity;
 
 import org.springframework.data.domain.Persistable;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import java.sql.Timestamp;
 
 public class Order implements Persistable<Long> {
@@ -9,29 +11,35 @@ public class Order implements Persistable<Long> {
 
     private Timestamp createTime;
 
+    @Pattern(regexp = ".{6,50}", message = "单号字符的长度在6~30之间")
     private String orderNumber;
 
+    @Pattern(regexp = ".{2,50}", message = "客户名字符的长度在2~30之间")
     private String name;
 
     private Timestamp orderTime;
 
     private String phone;
 
+
     private String email;
 
     private Long produceId;
 
+    @Min(value = 0,message = "请输入正确的价格")
     private Double price;
 
+    @Min(value = 0,message = "请输入正确的出售价格")
     private Double sale;
 
+    @Min(value = 1,message = "请输入正确的数量")
     private Integer number;
 
     private String orderAccount;
 
     private String orderUser;
 
-    private Boolean remove;
+    private Boolean remove = Boolean.FALSE;
 
     private String note;
 
