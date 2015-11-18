@@ -1,5 +1,6 @@
 package com.github.application.erp.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.domain.Persistable;
 
 import javax.validation.constraints.Min;
@@ -9,6 +10,7 @@ import java.sql.Timestamp;
 public class Order implements Persistable<Long> {
     private Long id;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     private Timestamp createTime;
 
     @Pattern(regexp = ".{6,50}", message = "单号字符的长度在6~30之间")
@@ -17,9 +19,11 @@ public class Order implements Persistable<Long> {
     @Pattern(regexp = ".{2,50}", message = "客户名字符的长度在2~30之间")
     private String name;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     private Timestamp orderTime;
 
     private String phone;
+
 
     private String email;
 
@@ -27,13 +31,13 @@ public class Order implements Persistable<Long> {
 
     private Product product;
 
-    @Min(value = 0,message = "请输入正确的价格")
+    @Min(value = 0, message = "请输入正确的价格")
     private Double price;
 
-    @Min(value = 0,message = "请输入正确的出售价格")
+    @Min(value = 0, message = "请输入正确的出售价格")
     private Double sale;
 
-    @Min(value = 1,message = "请输入正确的数量")
+    @Min(value = 1, message = "请输入正确的数量")
     private Integer number;
 
     private String orderAccount;

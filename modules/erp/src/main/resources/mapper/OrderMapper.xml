@@ -69,7 +69,13 @@
                 and led_order.id = #{pk.value}
             </if>
             <if test="remove != null">
-                and led_order.remove = ${remove}
+                and led_order.remove = #{remove}
+            </if>
+            <if test="startTime != null">
+                <![CDATA[   and led_order.order_time >= #{startTime}]]>
+            </if>
+            <if test="endTime != null">
+                <![CDATA[ and led_order.order_time <= #{endTime}]]>
             </if>
         </where>
     </select>

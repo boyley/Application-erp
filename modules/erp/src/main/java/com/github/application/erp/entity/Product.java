@@ -19,9 +19,10 @@ public class Product implements Persistable<Long> {
 
     private String email;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     private Timestamp createTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
     private Timestamp updateTime;
 
     @Pattern(regexp = ".{2,30}", message = "LED型号字符的长度在2~30之间")
