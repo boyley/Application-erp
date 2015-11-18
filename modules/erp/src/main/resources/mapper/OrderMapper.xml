@@ -19,18 +19,57 @@
         <result column="note" property="note" jdbcType="LONGVARCHAR"/>
     </resultMap>
 
+    <resultMap id="Association_ResultMap" type="com.github.application.erp.entity.Order" extends="BaseResultMap">
+        <association property="product" columnPrefix="poud_"
+                     javaType="com.github.application.erp.entity.Product"
+                     resultMap="com.github.application.erp.repository.ProductRepository.BaseResultMap"/>
+    </resultMap>
+
+
     <sql id="Base_Column_List">
         id, create_time, order_number, name, order_time, phone, email, produce_id, price,
         sale, number, order_account, order_user, remove,note
       </sql>
 
-    <select id="find" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from led_order
+    <select id="find" resultMap="Association_ResultMap">
+        SELECT
+        led_order.id,
+        led_order.create_time,
+        led_order.order_number,
+        led_order.`name`,
+        led_order.order_time,
+        led_order.phone,
+        led_order.email,
+        led_order.produce_id,
+        led_order.price,
+        led_order.sale,
+        led_order.number,
+        led_order.order_account,
+        led_order.order_user,
+        led_order.note,
+        led_order.`remove`,
+        product.id poud_id,
+        product.producer poud_producer,
+        product.contact poud_contact,
+        product.email poud_email,
+        product.phone poud_phone,
+        product.create_time poud_create_time,
+        product.update_time poud_update_time,
+        product.typ poud_typ,
+        product.colour_temperature poud_colour_temperature,
+        product.bri poud_bri,
+        product.price poud_price,
+        product.note poud_note,
+        product.remove poud_remove
+        FROM
+        led_order
+        INNER JOIN  product ON (product.id = led_order.produce_id)
         <where>
             <if test="pk != null">
-                and id = #{pk.value}
+                and led_order.id = #{pk.value}
+            </if>
+            <if test="remove != null">
+                and led_order.remove = ${remove}
             </if>
         </where>
     </select>
@@ -181,5 +220,56 @@
             </if>
         </set>
         where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updates" parameterType="list" useGeneratedKeys="true" keyProperty="id">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update led_order
+            <set>
+                <if test="item.createTime != null">
+                    create_time = ${item.createTime},
+                </if>
+                <if test="item.orderNumber != null">
+                    order_number = ${item.orderNumber},
+                </if>
+                <if test="item.name != null">
+                    name = ${item.name},
+                </if>
+                <if test="item.orderTime != null">
+                    order_time = ${item.orderTime},
+                </if>
+                <if test="item.phone != null">
+                    phone = ${item.phone},
+                </if>
+                <if test="item.email != null">
+                    email = ${item.email},
+                </if>
+                <if test="item.produceId != null">
+                    produce_id = ${item.produceId},
+                </if>
+                <if test="item.price != null">
+                    price = ${item.price},
+                </if>
+                <if test="item.sale != null">
+                    sale = ${item.sale},
+                </if>
+                <if test="item.number != null">
+                    number = ${item.number},
+                </if>
+                <if test="item.orderAccount != null">
+                    order_account = ${item.orderAccount},
+                </if>
+                <if test="item.orderUser != null">
+                    order_user = ${item.orderUser},
+                </if>
+                <if test="item.remove != null">
+                    remove = ${item.remove},
+                </if>
+                <if test="item.note != null">
+                    note = ${item.note},
+                </if>
+            </set>
+            where id = ${item.id}
+        </foreach>
     </update>
 </mapper>

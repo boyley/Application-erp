@@ -21,10 +21,11 @@ public class Order implements Persistable<Long> {
 
     private String phone;
 
-
     private String email;
 
     private Long produceId;
+
+    private Product product;
 
     @Min(value = 0,message = "请输入正确的价格")
     private Double price;
@@ -166,5 +167,13 @@ public class Order implements Persistable<Long> {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

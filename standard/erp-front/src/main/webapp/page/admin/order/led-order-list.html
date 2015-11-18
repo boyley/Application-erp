@@ -1,4 +1,7 @@
 <title>Led-订单管理</title>
+
+<link rel="stylesheet" href="/assets/css/datepicker.css"/>
+
 <!-- ajax layout which only needs content area -->
 <div class="page-header">
     <a class="btn btn-info btn-xs" data-url="order/publish"
@@ -7,6 +10,41 @@
         新增
     </a>
 </div>
+
+<!--search bar-->
+<form class="form-inline form-search" role="form" method="post" onsubmit="return false">
+    <label class="inline">
+        <span class="lbl">单号:</span>
+        <input type="text" class="input-medium" placeholder="单号" name="orderNumber"/>
+    </label>
+    &nbsp;&nbsp;
+    <label class="inline">
+        <span class="lbl">客户名:</span>
+        <input type="text" class="input-medium" placeholder="客户名" name="name"/>
+    </label>
+    &nbsp;&nbsp;
+    <label class="inline">
+        <span class="lbl">联系电话:</span>
+        <input type="text" class="input-medium" placeholder="联系电话" name="phone"/>
+    </label>
+    &nbsp;&nbsp;
+    <label class="inline">
+        <span class="lbl">LED型号:</span>
+        <input type="text" class="input-medium" placeholder="LED型号" name="product.typ"/>
+    </label>
+    &nbsp;&nbsp;
+    <label class="inline">
+        <span class="lbl">单号日期:</span>
+        <input type="text" class="input-medium date-picker" placeholder="开始日期" name="startTime"/>
+        至
+        <input type="text" class="input-medium date-picker" placeholder="结束日期" name="endTime"/>
+    </label>
+    <button type="submit" class="btn btn-info btn-medium">
+        <i class="ace-icon fa fa-search bigger-110"></i>查询
+    </button>
+</form>
+<hr/>
+<!--search bar-->
 <!-- /.page-header -->
 
 <!-- ajax layout which only needs content area -->
@@ -180,21 +218,21 @@
                     <td>{{:orderTime}}</td>
                     <td>{{:phone}}</td>
                     <td>{{:email}}</td>
-                    <td>{{:phone}}</td>
-                    <td>{{:phone}}</td>
-                    <td>{{:phone}}</td>
+                    <td>{{:product.typ}}</td>
+                    <td>{{:product.colourTemperature}}</td>
+                    <td>{{:product.bri}}</td>
                     <td>{{:price}}</td>
-                    <td>{{:phone}}</td>
+                    <td>{{:number}}</td>
                     <td>
-                        4900
+                        {{:(price * number)}}
                         <span class="badge badge-danger">未付</span>
                     </td>
-                    <td>出售价格：90</td>
+                    <td>{{:sale}}</td>
                     <td>
-                        6300
+                        {{:(sale*number)}}
                         <span class="badge badge-info">已收</span>
                     </td>
-                    <td>1400</td>
+                    <td>{{:((sale-price)*number)}}</td>
                     <td>
                         <div class="hidden-sm hidden-xs action-buttons">
                            <!-- <a class="blue tooltip-info" data-rel="tooltip" title="查看" href="#">

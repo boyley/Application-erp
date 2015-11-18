@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Bogle on 2015/11/3.
  */
@@ -30,5 +32,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order findOne(Long id) {
         return this.orderRepository.findOne(id);
+    }
+
+    @Override
+    public int remove(List<Order> orders) {
+        if (orders.size() <= 0) {
+            return 0;
+        }
+        return orderRepository.updates(orders);
     }
 }

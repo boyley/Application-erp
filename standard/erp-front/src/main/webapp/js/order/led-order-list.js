@@ -7,10 +7,19 @@ var scripts = [
     "/assets/js/jsrender.js",
     "/assets/js/jquery.serializeObject.js",
     "/assets/js/jquery.pagination-1.2.7.js",
+    "/assets/js/date-time/bootstrap-datepicker.js",
     null]
 $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
     //inline scripts related to this page
     $(function ($) {
+
+        $(".date-picker").datepicker({
+            format: 'yyyy-mm-dd',
+            language: 'zh-CN',
+            todayHighlight: true,
+            autoclose: true,
+            todayBtn: true
+        });
 
         $("table tbody").on(ace.click_event, '.bootbox-confirm-edit', function () {
             var target = $(this);

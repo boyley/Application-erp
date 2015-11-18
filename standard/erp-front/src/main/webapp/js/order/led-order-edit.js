@@ -1,19 +1,27 @@
 var scripts = [null,
     "/assets/js/jquery-ui.custom.js",
     "/assets/js/jquery.ui.touch-punch.js",
-
     '/assets/js/bootbox.js',
-    "/assets/js/date-time/bootstrap-datepicker.js",
+    "/assets/js/date-time/bootstrap-datetimepicker.min.js",
+    "/assets/js/date-time/locales/bootstrap-datetimepicker.zh-CN.js",
     {url: "/assets/js/validity.state.js", cache: false},
     {url: "/assets/js/jquery.iframe-post-form.js", cache: false},
     null]
 $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
 
-    $('.date-picker').datepicker({
-        autoclose: true,
+    //$('.date-picker').datepicker({
+    //    autoclose: true,
+    //    todayHighlight: true,
+    //    clearBtn: true
+    //})
+
+    $(".date-picker").datetimepicker({
+        format: 'yyyy-mm-dd hh:ii:ss.s',
+        language: 'zh-CN',
         todayHighlight: true,
-        clearBtn: true
-    })
+        autoclose: true,
+        todayBtn: true
+    });
 
     $('form[role="form"]').iframePostForm({
         json: true,
@@ -21,7 +29,6 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
             $('.page-content-area').ace_ajax('startLoading');
         },
         complete: function (response) {
-            console.info(response);
             $('.page-content-area').ace_ajax('stopLoading', true);
             if (response.success) {
                 bootbox.dialog({
@@ -32,7 +39,7 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
                             "label": "<i class='ace-icon fa fa-check'></i> 继续添加",
                             "className": "btn-sm btn-success",
                             "callback": function () {
-                                var url = '#led/publish';
+                                var url = '#order/publish';
                                 $('.page-content-area[data-ajax-content=true]').ace_ajax('loadUrl', url);
                                 window.location.href = url;
                             }
@@ -42,7 +49,7 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
                             "className": "btn-sm btn-primary",
                             "callback": function () {
                                 //Example.show("Primary button");
-                                var url = '#page/admin/led/led-produce-list.html';
+                                var url = '#page/admin/order/led-order-list.html';
                                 $('.page-content-area[data-ajax-content=true]').ace_ajax('loadUrl', url);
                                 window.location.href = url;
                             }
@@ -55,21 +62,21 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
 
 
     /**选择LED产品事件*/
-    if(!ace.vars['touch']) {
-        $('select.chosen-select').chosen({allow_single_deselect:true,no_results_text:'无可匹配的结果'})
+    if (!ace.vars['touch']) {
+        $('select.chosen-select').chosen({allow_single_deselect: true, no_results_text: '无可匹配的结果'})
             .trigger("chosen:updated.chosen")
-            .ready(function() {
+            .ready(function () {
                 console.info($('div.form-group input[name="price"]').val());
-                if(!$('div.form-group input[name="price"]').val()) {
+                if (!$('div.form-group input[name="price"]').val()) {
                     $('div.form-group input[name="price"]').val($('select.chosen-select option').first().attr('price'));
                 }
             })
-            .change(function(event,option) {
-            var id = option.selected;
-            var selected =$('select.chosen-select option[value="' + id + '"]');
+            .change(function (event, option) {
+                var id = option.selected;
+                var selected = $('select.chosen-select option[value="' + id + '"]');
                 console.info(selected);
-            $('div.form-group input[name="price"]').val(selected.attr('price'));
-        });
+                $('div.form-group input[name="price"]').val(selected.attr('price'));
+            });
     }
 
     $('.calculate').on('keyup', function () {
@@ -84,13 +91,13 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
         var number = parseInt($('.form-group input[name="number"]').val());
         var sale = parseFloat($('div.form-group input[name="sale"]').val());
         var price = parseFloat($('div.form-group input[name="price"]').val());
-        if(isNaN(number)) {
+        if (isNaN(number)) {
             number = 0;
         }
-        if(isNaN(sale)) {
+        if (isNaN(sale)) {
             sale = 0;
         }
-        if(isNaN(price)) {
+        if (isNaN(price)) {
             price = 0;
         }
         $('div.form-group input[name="allPrice"]').val(number * price);

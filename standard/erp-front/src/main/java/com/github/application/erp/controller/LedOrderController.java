@@ -12,12 +12,14 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -37,6 +39,16 @@ public class LedOrderController {
     @ApiOperation(value = "分页获取LED订单列表信息")
     @RequestMapping(value = "/list", method = RequestMethod.GET, consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Page<Order> list(@ApiParam(required = true, value = "分页信息") Pageable pageable, @ApiParam(required = false, value = "查询条件") QueryOrder queryOrder) {
+        if(queryOrder.getStartTime() != null) {
+            String d=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(queryOrder.getStartTime().getTime());
+            System.out.println("StartTime:" + d);
+        }
+        if(queryOrder.getEndTime() != null) {
+            String d=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(queryOrder.getEndTime().getTime());
+            System.out.println("StartTime:" + d);
+        }
+
+
         Page<Order> page = orderService.findPager(pageable, queryOrder);
         return page;
     }
@@ -75,4 +87,14 @@ public class LedOrderController {
         return api;
     }
 
+
+    @ApiOperation(value = "移除产品")
+    @RequestMapping(value = "/remove", method = RequestMethod.DELETE, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public
+    @ResponseBody
+    Api<List<Order>> remove(@RequestBody List<Order> orders) {
+        int count = this.orderService.remove(orders);
+        Api<List<Order>> api = new Api<>(count > 0, count > 0 ? HttpStatus.OK.value() : HttpStatus.INTERNAL_SERVER_ERROR.value(), orders);
+        return api;
+    }
 }

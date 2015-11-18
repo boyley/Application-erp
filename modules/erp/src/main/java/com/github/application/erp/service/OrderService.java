@@ -4,6 +4,8 @@ import com.github.application.erp.entity.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * Created by Bogle on 2015/11/3.
  */
@@ -14,4 +16,6 @@ public interface OrderService {
     Order save(Order order);
 
     Order findOne(Long id);
+
+    int remove(List<Order> orders);
 }
