@@ -58,7 +58,7 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
                 });
             }
         }
-    })
+    });
 
 
     /**选择LED产品事件*/

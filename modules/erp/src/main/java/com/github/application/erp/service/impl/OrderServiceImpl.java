@@ -21,7 +21,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Page<Order> findPager(Pageable pageable, Order query) {
-        return orderRepository.findAll(pageable,query);
+        return orderRepository.findAll(pageable, query);
     }
 
     @Override
@@ -40,5 +40,12 @@ public class OrderServiceImpl implements OrderService {
             return 0;
         }
         return orderRepository.updates(orders);
+    }
+
+    @Override
+    public byte[] findAll(Order query) {
+        List<Order> iterable = this.orderRepository.findAll(query);
+
+        return null;
     }
 }

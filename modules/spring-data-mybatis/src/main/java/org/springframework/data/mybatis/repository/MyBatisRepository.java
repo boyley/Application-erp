@@ -7,6 +7,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * MyBatis specific extension of {@link org.springframework.data.repository.Repository}.
@@ -18,7 +19,7 @@ public interface MyBatisRepository<T, ID extends Serializable> extends PagingAnd
 
     <X extends T> Page<T> findAll(Pageable pageable, X condition);
 
-    <X extends T> Iterable<T> findAll(X condition);
+    <X extends T> List<T> findAll(X condition);
 
     <X extends T> Iterable<T> findAll(Sort sort, X condition);
 }

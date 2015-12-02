@@ -60,7 +60,7 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
                                     title: '删除提示',
                                     size: 'small',
                                     text: result.success ? '删除成功' : '删除失败',
-                                    class_name: 'gritter-center '+ (result.success ? 'gritter-success' : 'gritter-error'),
+                                    class_name: 'gritter-center ' + (result.success ? 'gritter-success' : 'gritter-error'),
                                     time: 700
                                 });
                                 var currentPageIndex = $("#pagination").data().page.currentPageIndex;
@@ -89,7 +89,7 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
         pageSizeItems: [20, 30, 50, 100],
         infoFormat: '{start} ~ {end}条，共{total}条',
         remote: {
-            sort:'sort=id,desc',
+            sort: 'sort=id,desc',
             params: function () {
                 return $('.form-search').data('query');
             },
@@ -120,6 +120,11 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
     $('.form-search[role="form"]').submit(function () {
         $("#pagination").page('remote', 0, $('.form-search').serializeObject());
         return false;
+    });
+
+    $('.form-search[role="form"] button.download').on('click', function () {
+        var form = $('.form-search[role="form"]').clone().attr("action","");
+
     });
 });
 

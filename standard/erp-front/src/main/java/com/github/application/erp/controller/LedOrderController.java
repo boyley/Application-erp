@@ -13,13 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -51,6 +54,16 @@ public class LedOrderController {
         }
         Page<Order> page = orderService.findPager(pageable, queryOrder);
         return page;
+    }
+
+    public ResponseEntity<byte[]> export(@ApiParam(required = false, value = "查询条件") QueryOrder queryOrder) throws UnsupportedEncodingException {
+        HttpHeaders headers = new HttpHeaders();
+        String fileName = new String("LED 订单列表信息.xlsx".getBytes("UTF-8"), "iso-8859-1");//为了解决中文名称乱码问题
+        headers.setContentDispositionFormData("attachment", fileName);
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        byte[] bytes = orderService.findAll(queryOrder);
+        return new ResponseEntity<>(bytes,
+                headers, HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "修改LED产品")

@@ -18,4 +18,12 @@ public interface OrderService {
     Order findOne(Long id);
 
     int remove(List<Order> orders);
+
+    /**
+     * 查询指定条件下的所有信息
+     *
+     * @param query
+     * @return
+     */
+    byte[] findAll(Order query);
 }

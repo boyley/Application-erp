@@ -120,7 +120,7 @@ public class SimpleMyBatisRepository<T, ID extends Serializable> extends SqlSess
     }
 
     @Override
-    public <X extends T> Iterable<T> findAll(X condition) {
+    public <X extends T> List<T> findAll(X condition) {
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("condition", condition);
         return selectList(FIND, params);
