@@ -4,6 +4,7 @@ import com.github.application.erp.entity.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -25,5 +26,5 @@ public interface OrderService {
      * @param query
      * @return
      */
-    byte[] findAll(Order query);
+    byte[] findAll(Order query) ;
 }
