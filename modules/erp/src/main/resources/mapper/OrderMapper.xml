@@ -63,7 +63,7 @@
         product.remove poud_remove
         FROM
         led_order
-        INNER JOIN  product ON (product.id = led_order.produce_id)
+        INNER JOIN product ON (product.id = led_order.produce_id)
         <where>
             <if test="pk != null">
                 and led_order.id = #{pk.value}
@@ -77,6 +77,18 @@
             <if test="endTime != null">
                 <![CDATA[ and led_order.order_time <= #{endTime}]]>
             </if>
+            <if test="orderNumber != null">
+                <![CDATA[  and led_order.order_number like '%${orderNumber}%']]>
+            </if>
+            <if test="name != null">
+                <![CDATA[  and led_order.`name` like '%${name}%']]>
+            </if>
+            <if test="phone != null">
+                <![CDATA[ and led_order.phone like '%${phone}%']]>
+            </if>
+            <if test="product != null and product.typ != null">
+                <![CDATA[ and product.typ like '%${product.typ}%']]>
+            </if>
         </where>
     </select>
 
@@ -87,7 +99,8 @@
         where id = #{id,jdbcType=BIGINT}
     </select>
 
-    <insert id="insert" parameterType="com.github.application.erp.entity.Order" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.github.application.erp.entity.Order" useGeneratedKeys="true"
+            keyProperty="id">
         insert into led_order
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="createTime != null">
@@ -179,7 +192,8 @@
         </trim>
     </insert>
 
-    <update id="update" parameterType="com.github.application.erp.entity.Order" useGeneratedKeys="true" keyProperty="id">
+    <update id="update" parameterType="com.github.application.erp.entity.Order" useGeneratedKeys="true"
+            keyProperty="id">
         update led_order
         <set>
             <if test="createTime != null">

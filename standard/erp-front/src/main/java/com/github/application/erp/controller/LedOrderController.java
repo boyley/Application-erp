@@ -48,8 +48,6 @@ public class LedOrderController {
             endTimeCalendar.add(Calendar.DATE, 1);
             endTimeCalendar.setTimeInMillis(endTimeCalendar.getTimeInMillis() - 1);
             queryOrder.setEndTime(endTimeCalendar.getTime());
-            System.out.println(queryOrder.getStartTime().toLocaleString());
-            System.out.println(queryOrder.getEndTime().toLocaleString());
         }
         Page<Order> page = orderService.findPager(pageable, queryOrder);
         return page;
