@@ -2,16 +2,17 @@ package com.github.application.erp.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.domain.Persistable;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class Order implements Persistable<Long> {
     private Long id;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
-    private Timestamp createTime;
+    private Date createTime;
 
     @Pattern(regexp = ".{6,50}", message = "单号字符的长度在6~30之间")
     private String orderNumber;
@@ -19,8 +20,9 @@ public class Order implements Persistable<Long> {
     @Pattern(regexp = ".{2,50}", message = "客户名字符的长度在2~30之间")
     private String name;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd", iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
-    private Timestamp orderTime;
+    private Date orderTime;
 
     private String phone;
 
@@ -61,13 +63,6 @@ public class Order implements Persistable<Long> {
         this.id = id;
     }
 
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
 
     public String getOrderNumber() {
         return orderNumber;
@@ -85,12 +80,20 @@ public class Order implements Persistable<Long> {
         this.name = name == null ? null : name.trim();
     }
 
-    public Timestamp getOrderTime() {
+    public Date getOrderTime() {
         return orderTime;
     }
 
-    public void setOrderTime(Timestamp orderTime) {
+    public void setOrderTime(Date orderTime) {
         this.orderTime = orderTime;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public String getPhone() {

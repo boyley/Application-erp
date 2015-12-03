@@ -2,7 +2,6 @@ $(function ($) {
 
     $('form.form-horizontal input').on('invalid', function () {
         oninvalid(this);
-
     });
 
     $('form.form-horizontal').on('keyup','input', function () {

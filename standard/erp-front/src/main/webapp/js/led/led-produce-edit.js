@@ -18,6 +18,8 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
             $('.page-content-area').ace_ajax('stopLoading', true);
             if (response.success) {
                 bootbox.dialog({
+                    title: '提示',
+                    size: 'small',
                     closeButton: false,
                     message: "<h3 class='bigger-110'>" + response.msg + "</h3>",
                     buttons: {

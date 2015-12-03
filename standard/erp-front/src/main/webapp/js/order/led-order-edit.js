@@ -32,6 +32,8 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
             $('.page-content-area').ace_ajax('stopLoading', true);
             if (response.success) {
                 bootbox.dialog({
+                    title: '提示',
+                    size: 'small',
                     closeButton: false,
                     message: "<h3 class='bigger-110'>" + response.msg + "</h3>",
                     buttons: {
@@ -56,6 +58,15 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
                         }
                     }
                 });
+            }  else if(!response.success && response.code == 501) {
+                // 字段不合法
+                var errors = response.data;
+                console.info(errors);
+                for (var i = 0; i < errors.length; i++) {
+                    var error = errors[i];
+                    var obj = $('input[name="' + error.field + '"]');
+                    $.fn.aceInvalid(obj, false);
+                }
             }
         }
     });
