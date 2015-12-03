@@ -59,6 +59,14 @@ public class LedOrderController {
     @ApiOperation(value = "导出模板信息")
     @RequestMapping(value = "/export", method = RequestMethod.POST, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<byte[]> export(@ApiParam(required = false, value = "查询条件") QueryOrder queryOrder) throws UnsupportedEncodingException {
+        if (queryOrder.getEndTime() != null) {
+            Calendar endTimeCalendar = Calendar.getInstance();
+            endTimeCalendar.setTime(queryOrder.getEndTime());
+            endTimeCalendar.add(Calendar.DATE, 1);
+            endTimeCalendar.setTimeInMillis(endTimeCalendar.getTimeInMillis() - 1);
+            queryOrder.setEndTime(endTimeCalendar.getTime());
+        }
+
         HttpHeaders headers = new HttpHeaders();
         String fileName = new String("LED 订单列表信息.xlsx".getBytes("UTF-8"), "iso-8859-1");//为了解决中文名称乱码问题
         headers.setContentDispositionFormData("attachment", fileName);

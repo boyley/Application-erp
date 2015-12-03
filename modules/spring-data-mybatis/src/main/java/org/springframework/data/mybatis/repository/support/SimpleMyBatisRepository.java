@@ -8,6 +8,7 @@ import org.springframework.data.mybatis.repository.MyBatisRepository;
 import org.springframework.data.repository.core.EntityInformation;
 import org.springframework.data.repository.core.RepositoryMetadata;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -121,8 +122,9 @@ public class SimpleMyBatisRepository<T, ID extends Serializable> extends SqlSess
 
     @Override
     public <X extends T> List<T> findAll(X condition) {
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
         params.put("condition", condition);
+        params.putAll(parseFields(condition,condition.getClass()));
         return selectList(FIND, params);
     }
 
