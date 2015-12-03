@@ -8,6 +8,7 @@ var scripts = [
     "/assets/js/jquery.serializeObject.js",
     "/assets/js/jquery.pagination-1.2.7.js",
     "/assets/js/date-time/bootstrap-datepicker.js",
+    {url: "/assets/js/jquery.iframe-post-form.js", cache: false},
     null]
 $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
     //inline scripts related to this page
@@ -123,8 +124,9 @@ $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
     });
 
     $('.form-search[role="form"] button.download').on('click', function () {
-        var form = $('.form-search[role="form"]').clone().attr("action","");
-
+        console.info('download')
+        var form = $('.form-search[role="form"]').clone().attr({"action" : "order/export"}).removeAttr('onsubmit');
+        form.submit();
     });
 });
 

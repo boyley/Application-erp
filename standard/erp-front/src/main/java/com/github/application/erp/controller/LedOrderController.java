@@ -57,7 +57,7 @@ public class LedOrderController {
     }
 
     @ApiOperation(value = "导出模板信息")
-    @RequestMapping(value = "/export", method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @RequestMapping(value = "/export", method = RequestMethod.POST, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<byte[]> export(@ApiParam(required = false, value = "查询条件") QueryOrder queryOrder) throws UnsupportedEncodingException {
         HttpHeaders headers = new HttpHeaders();
         String fileName = new String("LED 订单列表信息.xlsx".getBytes("UTF-8"), "iso-8859-1");//为了解决中文名称乱码问题

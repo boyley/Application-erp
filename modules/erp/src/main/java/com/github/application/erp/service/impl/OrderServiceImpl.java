@@ -65,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
         try (InputStream is = res.getInputStream()) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             Context context = new Context();
-            context.putVar("employees", orders);
+            context.putVar("list", orders);
             JxlsHelper.getInstance().processTemplate(is, baos, context);
             return baos.toByteArray();
         } catch (IOException e) {
