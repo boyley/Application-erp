@@ -21,6 +21,7 @@
         <setting name="defaultExecutorType" value="SIMPLE"/>
         <!-- 数据库超过25000秒仍未响应则超时 -->
         <setting name="defaultStatementTimeout" value="25000"/>
+        <setting name="logImpl" value="SLF4J"/>
     </settings>
 
     <!-- 全局别名设置，在映射文件中只需写别名，而不必写出整个类路径  -->

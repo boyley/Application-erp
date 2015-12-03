@@ -20,10 +20,12 @@ spring:
     mybatis:
         aliases: com.github.application.erp.entity
         mapper: com.github.application.erp.repository
+        configLocation: mybatis-configuration.xml
+        mapperLocations: classpath*:mapper/*Mapper.xml
 ---
 logging:
     file: /logs/erp.log
-    level: trace
+    level: debug
 
 ---
 server:

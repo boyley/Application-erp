@@ -13,6 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -63,13 +64,17 @@ public class InfrastructureConfig {
 
     @Bean
     @Autowired
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource, ResourceLoader resourceLoader, @Value("${spring.mybatis.aliases:*}") String aliases) throws Exception {
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource,
+                                               ResourceLoader resourceLoader,
+                                               @Value("${spring.mybatis.aliases:*}") String aliases,
+                                               @Value("${spring.mybatis.configLocation:*}") String configLocation,
+                                               @Value("${spring.mybatis.mapperLocations:*}") String mapperLocations) throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
         sessionFactory.setTypeAliasesPackage(aliases);
-        sessionFactory.setMapperLocations(getResources(resourceLoader, "classpath*:**/*Mapper.xml"));
-
-        List<Interceptor> interceptors = new ArrayList<Interceptor>();
+        sessionFactory.setMapperLocations(getResources(resourceLoader, mapperLocations));
+        sessionFactory.setConfigLocation(new ClassPathResource(configLocation));
+        List<Interceptor> interceptors = new ArrayList<>();
         interceptors.add(new PageInterceptor());
         sessionFactory.setPlugins(interceptors.toArray(new Interceptor[]{}));
         return sessionFactory.getObject();
