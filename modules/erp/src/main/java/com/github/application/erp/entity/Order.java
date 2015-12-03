@@ -19,7 +19,7 @@ public class Order implements Persistable<Long> {
     @Pattern(regexp = ".{2,50}", message = "客户名字符的长度在2~30之间")
     private String name;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", locale = "zh", timezone = "GMT+8")
     private Timestamp orderTime;
 
     private String phone;

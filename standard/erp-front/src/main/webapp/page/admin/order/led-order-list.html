@@ -1,7 +1,5 @@
 <title>Led-订单管理</title>
 
-<link rel="stylesheet" href="/assets/css/datepicker.css"/>
-
 <!-- ajax layout which only needs content area -->
 <div class="page-header">
     <a class="btn btn-info btn-xs" data-url="order/publish"
@@ -224,18 +222,18 @@
                     <td>{{:product.typ}}</td>
                     <td>{{:product.colourTemperature}}</td>
                     <td>{{:product.bri}}</td>
-                    <td>{{:price}}</td>
+                    <td>￥：{{:price}}</td>
                     <td>{{:number}}</td>
                     <td>
-                        {{:(price * number)}}
-                        <span class="badge badge-danger">未付</span>
+                        ￥：{{:(price * number)}}
+                        <!--<span class="badge badge-danger">未付</span>-->
                     </td>
-                    <td>{{:sale}}</td>
+                    <td>￥：{{:sale}}</td>
                     <td>
-                        {{:(sale*number)}}
-                        <span class="badge badge-info">已收</span>
+                        ￥：{{:(sale*number)}}
+                        <!--<span class="badge badge-info">已收</span>-->
                     </td>
-                    <td>{{:((sale-price)*number)}}</td>
+                    <td>￥：{{:((sale-price)*number)}}</td>
                     <td>
                         <div class="hidden-sm hidden-xs action-buttons">
                            <!-- <a class="blue tooltip-info" data-rel="tooltip" title="查看" href="#">

@@ -2,26 +2,26 @@ var scripts = [null,
     "/assets/js/jquery-ui.custom.js",
     "/assets/js/jquery.ui.touch-punch.js",
     '/assets/js/bootbox.js',
-    "/assets/js/date-time/bootstrap-datetimepicker.min.js",
-    "/assets/js/date-time/locales/bootstrap-datetimepicker.zh-CN.js",
+    "/assets/js/date-time/bootstrap-datepicker.js",
     {url: "/assets/js/validity.state.js", cache: false},
     {url: "/assets/js/jquery.iframe-post-form.js", cache: false},
     null]
 $('.page-content-area').ace_ajax('loadScripts', scripts, function () {
 
-    //$('.date-picker').datepicker({
-    //    autoclose: true,
-    //    todayHighlight: true,
-    //    clearBtn: true
-    //})
-
-    $(".date-picker").datetimepicker({
-        format: 'yyyy-mm-dd hh:ii:ss.s',
+    $('.date-picker').datepicker({
+        autoclose: true,
         language: 'zh-CN',
         todayHighlight: true,
-        autoclose: true,
-        todayBtn: true
-    });
+        clearBtn: true
+    })
+
+    //$(".date-picker").datetimepicker({
+    //    format: 'yyyy-mm-dd',
+    //    language: 'zh-CN',
+    //    todayHighlight: true,
+    //    autoclose: true,
+    //    todayBtn: true
+    //});
 
     $('form[role="form"]').iframePostForm({
         json: true,
