@@ -48,22 +48,22 @@
         led_order.order_user,
         led_order.note,
         led_order.`remove`,
-        product.id poud_id,
-        product.producer poud_producer,
-        product.contact poud_contact,
-        product.email poud_email,
-        product.phone poud_phone,
-        product.create_time poud_create_time,
-        product.update_time poud_update_time,
-        product.typ poud_typ,
-        product.colour_temperature poud_colour_temperature,
-        product.bri poud_bri,
-        product.price poud_price,
-        product.note poud_note,
-        product.remove poud_remove
+        led_product.id poud_id,
+        led_product.producer poud_producer,
+        led_product.contact poud_contact,
+        led_product.email poud_email,
+        led_product.phone poud_phone,
+        led_product.create_time poud_create_time,
+        led_product.update_time poud_update_time,
+        led_product.typ poud_typ,
+        led_product.colour_temperature poud_colour_temperature,
+        led_product.bri poud_bri,
+        led_product.price poud_price,
+        led_product.note poud_note,
+        led_product.remove poud_remove
         FROM
         led_order
-        INNER JOIN product ON (product.id = led_order.produce_id)
+        INNER JOIN led_product ON (led_product.id = led_order.produce_id)
         <where>
             <if test="pk != null">
                 and led_order.id = #{pk.value}
@@ -87,7 +87,7 @@
                 <![CDATA[ and led_order.phone like '%${phone}%']]>
             </if>
             <if test="product != null and product.typ != null">
-                <![CDATA[ and product.typ like '%${product.typ}%']]>
+                <![CDATA[ and led_product.typ like '%${product.typ}%']]>
             </if>
         </where>
     </select>

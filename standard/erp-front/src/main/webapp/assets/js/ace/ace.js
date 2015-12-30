@@ -96,7 +96,7 @@ jQuery(function ($) {
         }
 
         var demo_ajax_options = {
-            'update_active': false,
+            //'update_active': false,
             'close_active': true,
             'loading_text': '数据加载中',
             'default_url': 'page/index',//default hash

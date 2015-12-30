@@ -23,13 +23,13 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
-        from product
+        from led_product
         where id = #{id,jdbcType=BIGINT}
     </select>
     <select id="find" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from product
+        from led_product
         <where>
             <if test="producer != null">
                 and producer like '%${producer}%'
@@ -47,12 +47,12 @@
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from product
+    delete from led_product
     where id = #{id,jdbcType=BIGINT}
   </delete>
 
     <insert id="insert" parameterType="com.github.application.erp.entity.Product" useGeneratedKeys="true" keyProperty="id">
-        insert into product
+        insert into led_product
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="producer != null">
                 producer,
@@ -131,7 +131,7 @@
         </trim>
     </insert>
     <update id="update" parameterType="com.github.application.erp.entity.Product" useGeneratedKeys="true" keyProperty="id">
-        update product
+        update led_product
         <set>
             <if test="producer != null">
                 producer=#{producer,jdbcType=VARCHAR},
@@ -175,7 +175,7 @@
 
     <update id="updateByPrimaryKeysSelective" parameterType="list">
         <foreach collection="list" item="item" index="index" open="" close="" separator=";">
-            update product
+            update led_product
             <set>
                 <if test="item.producer != null">
                     producer = ${item.producer},
