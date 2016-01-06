@@ -5,6 +5,7 @@ import org.springframework.data.domain.Persistable;
 import org.springframework.data.mybatis.repository.MyBatisRepository;
 import org.springframework.data.mybatis.repository.query.MybatisQueryLookupStrategy;
 import org.springframework.data.repository.core.EntityInformation;
+import org.springframework.data.repository.core.RepositoryInformation;
 import org.springframework.data.repository.core.RepositoryMetadata;
 import org.springframework.data.repository.core.support.RepositoryFactorySupport;
 import org.springframework.data.repository.query.EvaluationContextProvider;
@@ -42,9 +43,14 @@ public class MyBatisRepositoryFactory extends RepositoryFactorySupport {
         return MyBatisRepository.class;
     }
 
-    @SuppressWarnings("rawtypes")
+//    @SuppressWarnings("rawtypes")
+//    @Override
+//    protected Object getTargetRepository(RepositoryMetadata repositoryMetadata) {
+//        return new SimpleMyBatisRepository(sessionTemplate, repositoryMetadata,getEntityInformation(repositoryMetadata.getDomainType()));
+//    }
+
     @Override
-    protected Object getTargetRepository(RepositoryMetadata repositoryMetadata) {
+    protected Object getTargetRepository(RepositoryInformation repositoryMetadata) {
         return new SimpleMyBatisRepository(sessionTemplate, repositoryMetadata,getEntityInformation(repositoryMetadata.getDomainType()));
     }
 
