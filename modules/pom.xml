@@ -15,8 +15,6 @@
     <modules>
         <module>spring-data-mybatis</module>
         <module>erp</module>
-        <module>security-authorize</module>
-        <module>security-authorize</module>
     </modules>
 
     <properties>
